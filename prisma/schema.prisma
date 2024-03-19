@@ -1,0 +1,175 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum ListingSatus {
+  PENDING
+  APPROVED
+  MODIFICATION
+  DECLINED
+  CANCELLED
+  BOOKED
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastName String
+  email String? @unique
+  emailVerified DateTime?
+  image String?
+  hashedPassword String?
+  resetToken String?
+  resetTokenExpiry DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  favoriteIds String[] @db.ObjectId
+  bio String?
+  countryValue String?
+  city String?
+  addressNumber String?
+  street String?
+  zipCode String?
+  phoneNumber String?
+  idCard String?
+
+  accounts Account[]
+  listings Listing[] @relation("listingOwner")
+  reservations Reservation[]
+  conversations Conversation[]
+  services Service[]
+
+  seenMessagesIds String[] @db.ObjectId
+  seenMessage Message[] @relation("Seen", fields: [seenMessagesIds], references: [id])
+
+  role Role @default(USER)
+
+  hiredListings Listing[] @relation(name: "hiredUser")
+
+  isBlocked Boolean @default(false)
+  
+
+}
+
+model Account {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  type String
+  provider String
+  providerAccountId String
+  refresh_token String? @db.String
+  access_token String? @db.String
+  expires_at Int?
+  token_type String?
+  scope String?
+  id_token String? @db.String
+  session_state String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Listing {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  applicantIds String[] @db.ObjectId
+  category String
+  description String
+  createdAt DateTime @default(now())
+  serviceDate DateTime
+  duration Int?
+  locationValue String
+  city String
+  addressNumber String
+  street String
+  zipCode String
+  additionalInfo String?
+  status ListingSatus @default(PENDING)
+  isPaid Boolean @default(false)
+  
+  user User @relation(name: "listingOwner", fields: [userId], references: [id], onDelete: Cascade)
+  // applicants Applicant[] @relation(fields: [applicantIds], references: [id])
+  // applicants User[] @relation(fields: [userId], references: [id])
+
+  reservations Reservation[]
+
+  conversationIds String[] @db.ObjectId
+  conversations Conversation[] @relation(fields: [conversationIds], references: [id])
+
+  isHiredId String? @db.ObjectId
+  hiredUser User? @relation(name: "hiredUser", fields: [isHiredId], references: [id])
+
+}
+
+model Reservation {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  listingId String @db.ObjectId
+  // serviceDate DateTime
+  totalPrice Int
+  createdAt DateTime @default(now())
+  duration Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+}
+
+// model Applicant {
+//   id String @id @default(auto()) @map("_id") @db.ObjectId
+//   userId String @db.ObjectId
+//   listingIds String[] @db.ObjectId
+//   listings Listing[] @relation(fields: [listingIds], references: [id])
+//   isHired Boolean @default(false)
+
+//   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+// }
+
+model Conversation {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  listingIds String[] @db.ObjectId
+  listing Listing[] @relation(fields: [listingIds], references: [id])
+
+  messages Message[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+}
+
+model Message {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  creatorId String @db.ObjectId
+  createdAt DateTime @default(now())
+
+  seenIds String[] @db.ObjectId
+  seen User[] @relation("Seen", fields: [seenIds], references: [id])
+
+  conversationId String @db.ObjectId
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+}
+
+model Service {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  category String
+  price Int
+  createdAt DateTime @default(now())
+  stripePriceId String
+  stripeProductId String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
