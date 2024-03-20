@@ -41,7 +41,7 @@ export default async function ListingsPage({ params }: { params: ListingsProps }
     
 
     
-    const {applicants, services} = await getApplicants(params.searchParams)
+    const {applicants = [], services = []} = await getApplicants(params.searchParams)
     
     
     return (
