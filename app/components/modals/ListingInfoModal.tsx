@@ -4,7 +4,7 @@ import useListingInfoModal from "@/app/hooks/useListingInfoModal";
 import Modal from "./Modal";
 import { useState } from "react";
 
-import { Applicant, Listing, Reservation } from "@prisma/client";
+import { Listing, Reservation } from "@prisma/client";
 
 import { SafeUser } from "@/app/types";
 import { useSearchParams } from "next/navigation";
