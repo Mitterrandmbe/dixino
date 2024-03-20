@@ -24,8 +24,12 @@ export async function POST(
             },
         });
 
+        if (!selectedUser) {
+            return NextResponse.error();
+        }
+
         // BLOCK & UNBLOCK USER
-        if (selectedUser?.isBlocked === false) {
+        if (selectedUser.isBlocked === false) {
             await prisma.user.update({
                 where: {
                     id: selectedUser.id
