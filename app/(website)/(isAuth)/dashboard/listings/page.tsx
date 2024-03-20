@@ -19,9 +19,9 @@ interface ListingsProps {
     
 }
 
-export default async function ListingsPage({searchParams, listingId}: ListingsProps ) {
+export default async function ListingsPage({ params }: { params: ListingsProps }) {
 
-    const listings = await getListings(searchParams);
+    const listings = await getListings(params.searchParams);
     const currentUser = await getCurrentUser();
     
     
@@ -41,7 +41,7 @@ export default async function ListingsPage({searchParams, listingId}: ListingsPr
     
 
     
-    const {applicants, services} = await getApplicants(searchParams)
+    const {applicants, services} = await getApplicants(params.searchParams)
     
     
     return (
