@@ -19,7 +19,7 @@ interface DashboardProps {
     listingId: IParams;
 }
 
-export default async function DashboardPage({ searchParams, listingId }: DashboardProps) {
+export default async function DashboardPage({ params }: {params: DashboardProps}) {
     
     const currentUser = await getCurrentUser();
     if(!currentUser) {
@@ -43,8 +43,8 @@ export default async function DashboardPage({ searchParams, listingId }: Dashboa
         )
     };
 
-    const { applicants, services } = await getApplicants(searchParams);
-    const { employers } = await getEmployers(searchParams);
+    const { applicants, services } = await getApplicants(params.searchParams);
+    const { employers } = await getEmployers(params.searchParams);
 
 
     const reservations = await getReservations({ userId: currentUser.id });
