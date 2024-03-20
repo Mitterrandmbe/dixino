@@ -10,7 +10,7 @@ export async function POST(
 
     try {
         if(!currentUser) {
-            return null;
+            return NextResponse.error();
         }
 
         const body = await request.json();
