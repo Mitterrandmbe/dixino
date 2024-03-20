@@ -40,7 +40,7 @@ const Hero = () => {
               <h1
                 className="text-center lg:text-left text-5xl lg:text-6xl font-semibold leading-tight"
               >
-                Besoin d'un <br /><span className="text-primary">{typeEffect}</span> ?
+                Besoin d{"'"}un <br /><span className="text-primary">{typeEffect}</span> ?
               </h1>
 
               <div>

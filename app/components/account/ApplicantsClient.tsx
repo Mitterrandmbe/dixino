@@ -115,7 +115,7 @@ const ApplicantsClient: React.FC<ApplicantsClientProps> = ({
     setShowInfo(prev => !prev);
 
     
-   }, [router, applicant, services, listingId, ModalbodyContent])
+   }, [router, applicant, services, listingId, ModalbodyContent, listing.id, pathName])
       
 
   const onHire = useCallback((applicant: SafeApplicant, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -174,7 +174,7 @@ const ApplicantsClient: React.FC<ApplicantsClientProps> = ({
   
     hireModal.onOpen();
     
-  }, [currentUser, hireModal, applicant, router, listingId, ModalbodyContent]);
+  }, [currentUser, hireModal, applicant, router, listingId, ModalbodyContent, listing.id, pathName, searchParams, services]);
 
   
    

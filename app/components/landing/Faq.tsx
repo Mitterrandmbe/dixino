@@ -5,10 +5,11 @@ import { faqListing } from '@/app/libs/data';
 
 const Faq = () => {
   
-    const faqs = faqListing.map((faq) => (
+    const faqs = faqListing.map((faq, index) => (
         <Accordeon 
             question={faq.question}
             answer={faq.answer}
+            key={index}
         />
 
     ))

@@ -26,8 +26,9 @@ const AccountTabs: React.FC<AccountTabsProps> = ({
   return (
     <div className="flex flex-col">
       <div className="flex flex-row gap-8 border-b">
-        {accountTabs.map((item) => (
+        {accountTabs.map((item, index) => (
           <div
+            key={index}
             onClick={() => handleSelect(item.label)}
             className={`
               flex

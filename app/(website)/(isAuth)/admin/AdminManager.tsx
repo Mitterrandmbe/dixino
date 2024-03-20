@@ -91,6 +91,7 @@ const AdminManager: React.FC<AdminManagerProps> = ({
         >
             {adminTabs.map((item) => (
                 <div
+                key={item.index}
                 onClick={() => onSelectTab(item.index)}
                 className={`
                   flex

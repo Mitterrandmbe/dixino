@@ -95,7 +95,7 @@ const HireModal: React.FC<HiredModalProps> = ({
 
             <div className="flex flex-row justify-between font-semibold">
                 
-                <div>Tarif à l'heure</div>
+                <div>Tarif à l{"'"}heure</div>
                 <div>{price}€/h</div>
             </div>
 

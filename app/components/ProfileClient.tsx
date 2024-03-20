@@ -123,7 +123,7 @@ export const ProfileClient: React.FC<ProfileClientProps> = ({ user, key, onClick
 
                             </div>
                         ) : (
-                            <div className="text-warning">Bio non fournie par l'utilisateur</div>
+                            <div className="text-warning">Bio non fournie par l{"'"}utilisateur</div>
                         )}
                     </div>
                 <div className="flex flex-col gap-4">
@@ -131,7 +131,7 @@ export const ProfileClient: React.FC<ProfileClientProps> = ({ user, key, onClick
                     {user.phoneNumber ? (
                         <div className="text-neutral-600 whitespace-pre-line">{user.phoneNumber}</div>
                     ): (
-                        <div className="text-warning">Numéro de téléphone non fourni par l'utilisateur</div>
+                        <div className="text-warning">Numéro de téléphone non fourni par l{"'"}utilisateur</div>
                     )}
                 </div>
                 <div className="flex flex-col gap-4">
@@ -140,11 +140,11 @@ export const ProfileClient: React.FC<ProfileClientProps> = ({ user, key, onClick
                         <div className="text-neutral-600 whitespace-pre-line">{user.addressNumber} {user.street} {user.city}{","} {countryName?.translations}</div>
 
                     ) : (
-                        <div className="text-warning">Adresse non fournie par l'utilisateur</div>
+                        <div className="text-warning">Adresse non fournie par l{"'"}utilisateur</div>
                     )}
                 </div>
                 <div className="flex flex-col gap-4">
-                    <div className="font-semibold text-xl text-primary">Carte d'identité</div>
+                    <div className="font-semibold text-xl text-primary">Carte d{"'"}identité</div>
                     {user.idCard ? (
                         <div className="w-full h-2/3">
                             <div className="aspect-video">
@@ -157,7 +157,7 @@ export const ProfileClient: React.FC<ProfileClientProps> = ({ user, key, onClick
                             </div>
                         </div>
                     ) : (
-                        <div className="text-warning">Carte d'identité non fournie par l'utilisateur</div>
+                        <div className="text-warning">Carte d'identité non fournie par l{"'"}utilisateur</div>
                     )}
 
                 </div>

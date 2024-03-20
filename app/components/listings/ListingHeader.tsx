@@ -78,14 +78,16 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
 
     if(!currentUser) {
         return null;
-    }
+    } 
 
-
+    // const [isSelected, setIsSelected] = useState(data.id);
+    
+    
     // HANDLE URL AND ROUTES
-
-    const [isSelected, setIsSelected] = useState(data.id);
-
+    
+    
     const handleSelect = useCallback(() => {
+        const [isSelected, setIsSelected] = useState(data.id);
         
         router.push(singleLevelNestedRoutes.dashboard.listings + `/${data.id}`);
 

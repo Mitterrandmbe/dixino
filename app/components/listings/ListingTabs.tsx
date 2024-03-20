@@ -26,8 +26,9 @@ const ListingTabs: React.FC<ListingTabsProps> = ({
   return (
     <div className="flex flex-col">
       <div className="flex flex-row gap-8 border-b">
-        {listingTabs.map((item) => (
+        {listingTabs.map((item, index) => (
           <div
+            key={index}
             onClick={() => handleSelect(item.label)}
             className={`
               flex

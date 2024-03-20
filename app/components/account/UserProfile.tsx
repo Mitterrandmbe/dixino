@@ -126,22 +126,23 @@ const UserProfile: React.FC<UserProfileProps> = ({
         <div className="flex flex-row gap-8 border-b">
               {accountTabs.map((item) => (
                 <div
-                  onClick={() => handleSelect(item.label)}
-                  className={`
-                    flex
-                    flex-row
-                    gap-2
-                    justify-center
-                    items-center
-                    text-sm
-                    font-semibold
-                    cursor-pointer
-                    hover:text-black
-                    h-fit
-                    p-4
-                    border-b
-                    ${selected === item.label ? "border-black" : "border-transparent"}
-                    ${selected === item.label ? "text-black" : "text-neutral-500"}
+                    key={item.label}
+                    onClick={() => handleSelect(item.label)}
+                    className={`
+                        flex
+                        flex-row
+                        gap-2
+                        justify-center
+                        items-center
+                        text-sm
+                        font-semibold
+                        cursor-pointer
+                        hover:text-black
+                        h-fit
+                        p-4
+                        border-b
+                        ${selected === item.label ? "border-black" : "border-transparent"}
+                        ${selected === item.label ? "text-black" : "text-neutral-500"}
                     `}
                 >
                   {item.label}
@@ -326,7 +327,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
                 <div className="flex flex-row gap-4 text-xl text-black font-semibold">
                     <LiaIdCard size={24} />
                     <div>
-                        Carte d'identité
+                        Carte d{"'"}identité
                     </div>
                 </div>
                 
