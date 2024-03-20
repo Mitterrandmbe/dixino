@@ -157,7 +157,7 @@ export const ProfileClient: React.FC<ProfileClientProps> = ({ user, key, onClick
                             </div>
                         </div>
                     ) : (
-                        <div className="text-warning">Carte d'identité non fournie par l{"'"}utilisateur</div>
+                        <div className="text-warning">Carte d{"'"}identité non fournie par l{"'"}utilisateur</div>
                     )}
 
                 </div>

@@ -53,86 +53,19 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
     currentUser,
     onSelect
 }) => {
-  
-    const router = useRouter();
-    const params = useParams();
-    const loginModal = useLoginModal();
-
-    const applicationModal = useApplicationModal();
-    const archiveListingModal = useArchiveListingModal();
-
+    const [isSelected, setIsSelected] = useState(data.id);
     const [isLoading, setIsLoading] = useState(false);
-    
+
     const { getByValue } = useCountries();
     const location = getByValue(data.locationValue);
-    const searchParams = useSearchParams();
-    const listingId = searchParams?.get("listingId");
-    const pathName = usePathname();
 
-    const isHiredNotEmpty = !data.isHiredId
+    const isHiredNotEmpty = !data.isHiredId;
 
-    // // Get current URL
-    // useEffect(() => {
-    //     pathName = usePathname() 
-    // }, [pathName])
-
-    if(!currentUser) {
-        return null;
-    } 
-
-    // const [isSelected, setIsSelected] = useState(data.id);
-    
-    
-    // HANDLE URL AND ROUTES
-    
-    
-    const handleSelect = useCallback(() => {
-        const [isSelected, setIsSelected] = useState(data.id);
-        
-        router.push(singleLevelNestedRoutes.dashboard.listings + `/${data.id}`);
-
-        if (params) {
-            setIsSelected(data.id);
-        }
-
-
-        onSelect=true
-    }, [data, onSelect, router])
-    
-    const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation();
-
-        if (disabled) {
-            return;
-        }
-
-        onAction?.(actionId)
-    }, [onAction, actionId, disabled]);
-
-    const price = useMemo(() => {
-        if (reservation) {
-            return reservation.totalPrice
-        };
-
-        return undefined;
-    }, [reservation]);
-
-    const reservationDate = useMemo(() => {
-        if (!reservation) {
-            return null;
-        };
-
-        const when = new Date(data.serviceDate);
-
-        return `${format(when, 'PP')} à ${format(when, "HH")}`
-    }, [reservation])
-
-    
     // CATEGORIES
 
     const category = useMemo(() => {
         return categories.find((cat) => cat.label === data.category)
-    }, [categories, data])
+    }, [categories, data]);
 
     // DATE TIME
     const date = data.serviceDate.toLocaleDateString("fr-FR", {
@@ -209,7 +142,72 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
         };
     }, [data.status]);
 
+    const router = useRouter();
+    const params = useParams();
+    const loginModal = useLoginModal();
+    const applicationModal = useApplicationModal();
+    const archiveListingModal = useArchiveListingModal();
+
     
+    
+    const searchParams = useSearchParams();
+    const listingId = searchParams?.get("listingId");
+    const pathName = usePathname();
+
+
+
+    // // Get current URL
+    // useEffect(() => {
+    //     pathName = usePathname() 
+    // }, [pathName])
+
+    
+    
+    
+    // HANDLE URL AND ROUTES
+    
+    
+    const handleSelect = useCallback(() => {
+        
+        
+        router.push(singleLevelNestedRoutes.dashboard.listings + `/${data.id}`);
+
+        if (params) {
+            setIsSelected(data.id);
+        }
+
+
+        onSelect=true
+    }, [data, onSelect, router, params])
+    
+    const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+
+        if (disabled) {
+            return;
+        }
+
+        onAction?.(actionId)
+    }, [onAction, actionId, disabled]);
+
+    const price = useMemo(() => {
+        if (reservation) {
+            return reservation.totalPrice
+        };
+
+        return undefined;
+    }, [reservation]);
+
+    const reservationDate = useMemo(() => {
+        if (!reservation) {
+            return null;
+        };
+
+        const when = new Date(data.serviceDate);
+
+        return `${format(when, 'PP')} à ${format(when, "HH")}`
+    }, [reservation])
+
     
     //Apply for this offer
     const onApply = useCallback(() => {
@@ -279,6 +277,7 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
 
     }, [data, currentUser])
 
+
     
     
     return (
@@ -309,7 +308,7 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
                 <div className="font-semibold text-xl flex flex-col lg:flex-row gap-4 lg:gap-0 justify-between">
                     {category?.label}
                     <div className="flex flex-row gap-2">
-                        {data.userId !== currentUser?.id && (
+                        {currentUser && data.userId !== currentUser?.id && (
                             <Button
                                 label={data.isHiredId === currentUser?.id ? "Candidature en cours" : "Postuler"}
                                 small
