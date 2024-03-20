@@ -8,9 +8,9 @@ interface AccountProps {
     searchParams: IServicesParams
 }
 
-const AccountPage = async (
+export default async function AccountPage(
     searchParams: IServicesParams
-) => {
+) {
   
     const currentUser = await getCurrentUser();
     if(!currentUser) {
@@ -35,4 +35,3 @@ const AccountPage = async (
   )
 }
 
-export default AccountPage
