@@ -11,7 +11,7 @@ export async function POST(
 
     try {
         if (!currentUser || currentUser.role !=="ADMIN") {
-            return null
+            return NextResponse.error();
         };
 
         const body = await request.json();
