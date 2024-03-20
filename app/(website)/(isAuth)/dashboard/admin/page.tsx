@@ -18,7 +18,7 @@ import { getAllListings } from "@/app/actions/getAllListings";
 
 
 
-type AdminPageProps = {
+interface AdminPageProps {
     searchParams: IListingsParams;
     listingId: IParams
     
@@ -26,7 +26,7 @@ type AdminPageProps = {
 
 const AdminPage: React.FC<AdminPageProps> = async ({
     searchParams
- }) => {
+ }: AdminPageProps) => {
 
     const currentUser = await getCurrentUser();
 
