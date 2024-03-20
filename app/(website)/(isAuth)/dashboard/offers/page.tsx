@@ -24,7 +24,7 @@ interface OffersProps {
     
 }
 
-export default async function OffersPage({searchParams, listingId}: OffersProps ) {
+export default async function OffersPage({ params }: { params: OffersProps }) {
 
     const currentUser = await getCurrentUser();
 
@@ -56,7 +56,7 @@ export default async function OffersPage({searchParams, listingId}: OffersProps 
     const listingIds = listings.map((listing) => listing.id);
 
     // const { listing, applicants } = await getApplicants(searchParams.listingId as IParams);
-    const {applicants, services} = await getApplicants(searchParams)
+    const {applicants, services} = await getApplicants(params.searchParams)
 
     
     return (
