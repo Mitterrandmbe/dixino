@@ -19,7 +19,7 @@ import { getAllListings } from "@/app/actions/getAllListings";
 
 
 interface OffersProps {
-    searchParams: IListingsParams,
+    searchParams: IListingsParams;
     listingId: IParams
     
 }
