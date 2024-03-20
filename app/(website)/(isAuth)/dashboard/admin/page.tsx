@@ -18,13 +18,14 @@ import { getAllListings } from "@/app/actions/getAllListings";
 
 
 
-interface OffersProps {
+interface AdminPageProps {
     searchParams: IListingsParams;
     listingId: IParams
     
 }
 
-export default async function AdminPage({searchParams, listingId}: OffersProps ) {
+const AdminPage: React.FC<AdminPageProps> = async ({searchParams, listingId
+ }) => {
 
     const currentUser = await getCurrentUser();
 
@@ -81,4 +82,6 @@ export default async function AdminPage({searchParams, listingId}: OffersProps )
             </Container>
         </div>
     )
-}
+};
+
+export default AdminPage
