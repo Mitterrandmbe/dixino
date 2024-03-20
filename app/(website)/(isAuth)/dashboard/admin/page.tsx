@@ -24,9 +24,7 @@ interface AdminPageProps {
     
 }
 
-const AdminPage: React.FC<AdminPageProps> = async ({
-    searchParams
- }: AdminPageProps) => {
+const AdminPage = async ({ params }: { params: AdminPageProps }) => {
 
     const currentUser = await getCurrentUser();
 
@@ -60,7 +58,7 @@ const AdminPage: React.FC<AdminPageProps> = async ({
     const listingIds = listings.map((listing) => listing.id);
 
     // const { listing, applicants } = await getApplicants(searchParams.listingId as IParams);
-    const {applicants, services} = await getApplicants(searchParams);
+    const {applicants, services} = await getApplicants(params.searchParams);
 
     const allListings = await getAllListings()
 
