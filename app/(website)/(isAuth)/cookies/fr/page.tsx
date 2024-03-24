@@ -6,7 +6,7 @@ const CookiesFrPage = () => {
     <Container>
         <div className='w-full h-screen'>
             <iframe 
-                src='/pdfs/cookieFr.pdf'
+                src='/pdfs/cookieFr.pdf#toolbar=0'
                 width="100%"
                 height="800"
                 allowFullScreen

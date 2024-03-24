@@ -6,11 +6,12 @@ const MentionLegalesNlPage = () => {
     <Container>
         <div className='w-full h-screen'>
             <iframe 
-                src='/pdfs/legalNl.pdf'
+                src='/pdfs/legalNl.pdf#toolbar=0'
                 width="100%"
                 height="800"
                 allowFullScreen
                 style={{height: "800px", width: "100%"}}
+
             />
 
         </div>

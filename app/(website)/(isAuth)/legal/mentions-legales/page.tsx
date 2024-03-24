@@ -6,7 +6,7 @@ const MentionLegalesFrPage = () => {
     <Container>
         <div className='w-full h-screen'>
             <iframe 
-                src='/pdfs/legalFr.pdf'
+                src='/pdfs/legalFr.pdf#toolbar=0'
                 width="100%"
                 height="800"
                 allowFullScreen

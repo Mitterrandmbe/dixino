@@ -6,7 +6,7 @@ const TermsFrPage = () => {
     <Container>
         <div className='w-full h-screen'>
             <iframe 
-                src='/pdfs/termsFr.pdf'
+                src='/pdfs/termsFr.pdf#toolbar=0'
                 width="100%"
                 height="800"
                 allowFullScreen

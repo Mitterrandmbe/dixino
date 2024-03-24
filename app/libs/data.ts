@@ -3,9 +3,15 @@ import { GiVacuumCleaner } from "react-icons/gi";
 import { GiTap } from "react-icons/gi";
 
 import { IoIosList } from "react-icons/io";
-import { LuMapPin, LuCalendarOff, LuUsers2, LuArchive } from "react-icons/lu";
+import { LuMapPin, LuCalendarOff, LuUsers2, LuArchive, LuBaby } from "react-icons/lu";
 import { HiOutlineEnvelope } from "react-icons/hi2";
-import { FaParachuteBox, FaPeopleCarryBox } from "react-icons/fa6";
+import { FaParachuteBox, FaPeopleCarryBox, FaPeoplePulling, FaPeopleRoof } from "react-icons/fa6";
+import { TbIroning2,  } from "react-icons/tb";
+import { GiGardeningShears } from "react-icons/gi";
+import { BsPlug } from "react-icons/bs";
+import { IoSchoolOutline } from "react-icons/io5";
+
+
 
 
 export const faqListing = [
@@ -31,26 +37,128 @@ export const categories = [
         color: "#BEADFA"
     },
     {
+        label: "Repassage",
+        icon: TbIroning2,
+        description: "Gardez vos vêtement propres et repassés",
+        color: "#BEADFA"
+    },
+    {
         label: "Plomberie",
         icon: GiTap,
         description: "Trouvez un plombier sérieux pour vos réparations",
         color: "#FFF3DA"
     },
     {
-        label: "Soins",
+        label: "Soins - Aide-soignant(e)",
         icon: MdHealthAndSafety,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Jardinier",
-        icon: MdHealthAndSafety,
+        icon: GiGardeningShears,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Electricien",
-        icon: MdHealthAndSafety,
+        icon: BsPlug,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Babysitting",
+        icon: LuBaby,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Aide familiale",
+        icon: FaPeopleRoof,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Aide aux personnes âgées",
+        icon: FaPeoplePulling,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Soutien scolaire",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Déménagement",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Frigoriste",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Traducteur de text",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Hommes de chantier",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Peintre",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Menuiserie",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Décoration",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Serveur / Hôtesse",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Coiffure",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Comptable",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Aide cuisinier(ère)",
+        icon: IoSchoolOutline,
+        description: "Un infirmier(e) dévoué pour vos soins à domicile",
+        color: "#FFCEFE"
+    },
+    {
+        label: "Réparateur de GSM & ordinateur",
+        icon: IoSchoolOutline,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
