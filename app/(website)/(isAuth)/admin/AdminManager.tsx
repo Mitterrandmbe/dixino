@@ -11,6 +11,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AdminDashboard from "@/app/components/dashboard/AdminDashboard";
+import Heading from "@/app/components/Heading";
 
 
 interface AdminManagerProps {
@@ -170,7 +171,10 @@ const AdminManager: React.FC<AdminManagerProps> = ({
                     gap-8
                 "
             >
-                Jobbistes
+                <Heading 
+                    title="A venir 🏃‍♂️"
+                    subtitle="Encore un peu de patience..."
+                />
             </div>
         )}
         

@@ -24,7 +24,7 @@ export default async function ListingsPage({ params }: { params: IParams }) {
   return (
     <div className="bg-neutral-100 h-screen overflow-auto">
       <Container>
-        <div className="bg-white w-fit p-8 mx-auto mt-8 rounded-md">
+        <div className="bg-white w-full p-8 mx-auto mt-8 rounded-md">
           <ListingInfo listing={listing} currentUser={currentUser} applicants={applicants} />
         </div>
       </Container>

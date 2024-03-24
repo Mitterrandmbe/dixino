@@ -73,21 +73,9 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
 
     const handleSelect = useCallback(() => {
         
-        router.push(singleLevelNestedRoutes.dashboard.listings + `/?listingId=${data.id}`);
-        if (pathname === "/dashboard/listings") {
-            router.push(singleLevelNestedRoutes.dashboard.listings + `/?listingId=${data.id}`);
-        }
-
-        // if (pathname === "/dashboard/offers") {
-        //     router.push(singleLevelNestedRoutes.dashboard.offers + `/?listingId=${data.id}`);
-        // }
-
-        // if (params) {
-        //     setIsSelected(data.id);
-        // }
-
-        // onSelect=true
-    }, [data, onSelect, router]);
+        router.push(singleLevelNestedRoutes.dashboard.listings + `/${data.id}`);
+        
+    }, [data, router]);
 
     const showOfferDetail = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -318,44 +306,7 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
         </div>
 
         </div>
-        
-        {/* {data.userId === currentUser?.id && (
-            <div className="flex flex-row justify-between border-t border-dashed pt-4 text-neutral-500">
-                <div className="hidden md:flex flex-row items-center gap-2 font-semibold">
-                    <div className="flex-row bg-neutral-100 p-2 rounded-full">
-                        <LuCalendarOff size={16} />
-                    </div>
-                    <div className="text-xs">Expire le {formattedExpirationDate}</div>
-
-                </div>
-
-                <div className="flex flex-row items-center gap-2 font-semibold">
-                    <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
-                        <LuUsers2 size={16} />
-                    </div>
-                    <div className="text-xs">{applicantCount}</div>
-                </div>
-
-                <div className="flex flex-row items-center gap-2 font-semibold">
-                    <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
-                        {currentStatus && <currentStatus.icon />}
-                    </div>
-                    <div className="text-xs">{currentStatus?.status}</div>
-                </div>
-
-            </div>
-
-        )}
-        <div className="block lg:hidden">
-            <Button 
-                label="Voir cette offre"
-                onClick={showOfferDetail}
-                actionLevel="secondary"
-            />
-
-        </div> */}
-
-        
+            
         
     </div>
     

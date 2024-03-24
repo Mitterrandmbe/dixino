@@ -18,13 +18,7 @@ import { getAllListings } from "@/app/actions/getAllListings";
 
 
 
-interface AdminPageProps {
-    searchParams: IListingsParams;
-    listingId: IParams
-    
-}
-
-const AdminPage = async ({ params }: { params: AdminPageProps }) => {
+const AdminPage = async () => {
 
     const currentUser = await getCurrentUser();
 
@@ -38,9 +32,12 @@ const AdminPage = async ({ params }: { params: AdminPageProps }) => {
         )
     }
 
-    const listings = await getListings({});
 
-    
+    // const { listing, applicants } = await getApplicants(searchParams.listingId as IParams);
+    // const {applicants, services} = await getApplicants(params.searchParams);
+
+    const listings = await getAllListings()
+
     if (listings.length === 0) {
         return (
             <EmptyState 
@@ -51,35 +48,35 @@ const AdminPage = async ({ params }: { params: AdminPageProps }) => {
         )
     };
 
-    // if(!listing) {
-    //     return null;
-    // }
-
-    const listingIds = listings.map((listing) => listing.id);
-
-    // const { listing, applicants } = await getApplicants(searchParams.listingId as IParams);
-    const {applicants, services} = await getApplicants(params.searchParams);
-
-    const allListings = await getAllListings()
-
 
     
     return (
-        <div className="bg-neutral-100 h-screen overflow-auto">
-            <Container>
-                {allListings.map((listing: any) => {
-                    return (
-                            <AdminClient 
-                                currentUser={currentUser}
-                                key={listing.id}
-                                listing={listing}
-                                applicants={applicants}
-                                services={services}
-                            />
-                    )
-                })}
-            </Container>
-        </div>
+        <Container>
+            <div
+                className="
+                    grid
+                    grid-cols-1
+                    sm:grid-cols-1
+                    md:grid-cols-2
+                    lg:grid-cols-2
+                    xl:grid-cols-3
+                    2xl:grid-cols-3
+                    gap-8
+                    mt-12
+                "
+            
+            >
+                    {listings.map((listing: any) => {
+                        return (
+                                <ListingCard 
+                                    key={listing.id}
+                                    data={listing}
+                                />
+                        )
+                    })}
+    
+            </div>
+        </Container>
     )
 };
 

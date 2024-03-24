@@ -30,6 +30,8 @@ const AdminDashboardMetrics: React.FC<AdminDashboardMetricsProps> = ({
     // const applications = listings.map((listings) => listings.applicantIds)
     // const numberOfApplicants = applications.length
 
+    const numberOfListings = allListings.length
+
     
     
   
@@ -76,7 +78,7 @@ const AdminDashboardMetrics: React.FC<AdminDashboardMetricsProps> = ({
 
 
       <div className="bg-white text-3xl lg:text-4xl font-semibold text-black py-16 px-8 rounded-md shadow-md border-2 border-neutral-100">
-        <div>{400}</div>
+        <div>{numberOfListings}</div>
         <div className="mt-4 flex flex-row justify-between font-normal items-center text-sm">
           <div className="text-md font-semibold">offres postées</div>
           <div className="text-md cursor-pointer hover:bg-primary hover:text-white p-2 transition-all">

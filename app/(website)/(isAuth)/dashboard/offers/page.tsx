@@ -14,17 +14,11 @@ import { SafeService } from "@/app/types";
 import getApplicantById from "@/app/actions/getApplicantById";
 import OffersClient from "./OffersClient";
 import HireModal from "@/app/components/modals/HireModal";
+import { getAllListings } from "@/app/actions/getAllListings";
 
 
 
-
-interface OffersProps {
-    searchParams: IListingsParams,
-    listingId: IParams
-    
-}
-
-export default async function OffersPage({ params }: { params: OffersProps }) {
+export default async function OffersPage() {
 
     const currentUser = await getCurrentUser();
 
@@ -38,10 +32,11 @@ export default async function OffersPage({ params }: { params: OffersProps }) {
         )
     }
 
-    const listings = await getListings({ userId: currentUser.id });
-
+    // const listings = await getListings({ userId: currentUser.id });
+    const listings = await getAllListings()
+    const filteredListings = listings.filter((listing) => listing.userId === currentUser.id);
     
-    if (listings.length === 0) {
+    if (filteredListings.length === 0) {
         return (
             <EmptyState 
                 title="Vous n'avez pas encore d'offre."
@@ -56,25 +51,47 @@ export default async function OffersPage({ params }: { params: OffersProps }) {
     const listingIds = listings.map((listing) => listing.id);
 
     // const { listing, applicants } = await getApplicants(searchParams.listingId as IParams);
-    const {applicants, services} = await getApplicants(params.searchParams)
-
     
+    
+    // const {applicants, services} = await getApplicants(params.searchParams)
+
+
     return (
-        <div className="bg-neutral-100 h-screen overflow-auto">
-            <Container>
-                {listings.map((listing: any) => {
+        
+        <Container>
+            <div
+                className="
+                    grid
+                    grid-cols-1
+                    sm:grid-cols-1
+                    md:grid-cols-2
+                    lg:grid-cols-2
+                    xl:grid-cols-3
+                    2xl:grid-cols-3
+                    gap-8
+                    mt-12
+                "
+            >
+                {filteredListings.map((listing: any) => {
                     return (
-                            <OffersClient 
+                            // <OffersClient 
+                            //     currentUser={currentUser}
+                            //     key={listing.id}
+                            //     listing={listing}
+                            //     applicants={applicants}
+                            //     services={services}
+                            // />
+                            <ListingCard 
                                 currentUser={currentUser}
                                 key={listing.id}
-                                listing={listing}
-                                applicants={applicants}
-                                services={services}
+                                data={listing}
                             />
                             
                     )
                 })}
-            </Container>
-        </div>
+
+            </div>
+        </Container>
+        
     )
 }

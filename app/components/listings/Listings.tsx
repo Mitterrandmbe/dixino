@@ -29,7 +29,7 @@ interface ListingProps {
     firstListing?: SafeListing;
 }
 
-const Listings: React.FC<ListingProps> = ({
+const Listing: React.FC<ListingProps> = ({
     listing,
     reservation,
     applicants,
@@ -47,9 +47,7 @@ const Listings: React.FC<ListingProps> = ({
     const params = useParams();
     
 
-    if (!firstListing) {
-        return null;
-    } 
+   
 
     if(!currentUser) {
         return null
@@ -90,48 +88,7 @@ const Listings: React.FC<ListingProps> = ({
                 
 
             </div>
-            {listing.id === listingId && (
-        
-                <div 
-                    className="
-                        hidden
-                        col-span-4
-                        lg:block
-                        whitespace-pre-line
-                        w-full
-                    "
-                >
-                    <div 
-                        className="
-                            absolute
-                            bg-white
-                            top-32
-                            w-2/4
-                            px-4
-                            h-screen
-                            lg:h-[80vh]
-                            overflow-y-auto
-                            rounded-md
-                        "
-                    >
-                        <div className="text-neutral-700 text-lg">
-
-                            <ListingInfo 
-                                key={listing.id}
-                                listing={listing}
-                                currentUser={currentUser}
-                                applicants={applicants}
-                                services={services}
-                                
-                            />
-                        </div>
-
-                    </div>
-                            
-                </div>
-
-
-            )}
+            
 
         </div>
         ) : (
@@ -152,7 +109,7 @@ const Listings: React.FC<ListingProps> = ({
                     gap-4
                     w-full
                     overflow-y-vertical
-                    ${firstListing.id === listing.id ? "border-2 border-secondary rounded-md" : "border-2 border-white rounded-md" }
+                    
                     `}
                     
                 >
@@ -190,14 +147,7 @@ const Listings: React.FC<ListingProps> = ({
                         >
                             <div className="text-neutral-700 text-lg">
 
-                                <ListingInfo 
-                                    key={firstListing?.id}
-                                    listing={firstListing}
-                                    currentUser={currentUser}
-                                    applicants={applicants}
-                                    services={services}
-                                    
-                                />
+                                
                             </div>
 
                         </div>
@@ -213,4 +163,4 @@ const Listings: React.FC<ListingProps> = ({
   )
 }
 
-export default Listings
+export default Listing

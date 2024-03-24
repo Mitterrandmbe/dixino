@@ -69,23 +69,19 @@ const ListingCard: React.FC<ListingCardProps> = ({
         
         // router.push(singleLevelNestedRoutes.dashboard.listings + `/${data.id}`);
         if (pathname === "/dashboard/listings") {
-            router.push(singleLevelNestedRoutes.dashboard.listings + `/?listingId=${data.id}`);
+            router.push(singleLevelNestedRoutes.dashboard.listings + `/${data.id}`);
         };
 
         if (pathname === "/dashboard/offers") {
-            router.push(singleLevelNestedRoutes.dashboard.offers + `/?listingId=${data.id}`);
+            router.push(singleLevelNestedRoutes.dashboard.offers + `/${data.id}`);
         };
 
         if (pathname === "/dashboard/admin") {
-            router.push(singleLevelNestedRoutes.dashboard.admin + `/?listingId=${data.id}`);
+            router.push(singleLevelNestedRoutes.dashboard.admin + `/${data.id}`);
         }
 
-        if (params) {
-            setIsSelected(data.id);
-        }
-
-        onSelect=true
-    }, [data, onSelect, router]);
+        
+    }, [data, router]);
 
     const showOfferDetail = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -226,53 +222,44 @@ const ListingCard: React.FC<ListingCardProps> = ({
     <div 
         onClick={handleSelect}
         className={`
-            flex
-            flex-col
-            gap-8 
-            bg-white
-            border-2
-            p-4
-            rounded-md
-            shadow-none
-            hover:shadow-lg
-            transition-all
+            col-span-1
             cursor-pointer
-            ${isSelected === id ? "border-secondary" : "border-white"}
+            shadow-sm
+            bg-white
+            p-4
+            border
+            border-neutral-200
+            rounded-md
+            gap-8
+            hover:shadow-xl
         `}
         >
-        <div
-            className="
-                grid
-                grid-cols-5
-                gap-8
-            "
-        >
-            <div className="col-span-1 text-2xl my-auto w-full aspect-square">
-                <div className="bg-neutral-100 w-full h-full flex flex-col justify-center items-center text-4xl 2xl:text-6xl rounded-full">
-                    {category && <category.icon />} 
+            <div className="grid grid-cols gap-4 w-full">
+                <div className="col-span-1 text-2xl my-auto w-full">
+                    <div className="bg-neutral-100 w-[60px] h-[60px] flex flex-row justify-center items-center text-4xl 2xl:text-6xl rounded-lg">
+                        {category && <category.icon size={32}/>} 
+                    </div>
                 </div>
-                   
-            </div>
-            
-            <div className="col-span-4 flex flex-col justify-between min-h-[120px] ">
+                <div className="col-span-4 flex flex-col justify-between min-h-[120px] ">
                 <div className="font-semibold text-xl">
                     {category?.label}
                 </div>
+                
 
                 <div className="flex flex-row justify-between gap-8">
-                    <div className="flex flex-row items-center gap-2 text-neutral-700 text-xs">
+                    <div className="flex flex-row items-center gap-2 text-primaryDark text-xs bg-primaryLight p-1 rounded">
                         <div className="hidden md:block">
                             <LuMapPin size={16}/>
                         </div>
                         {data.city} {location?.flag}
                     </div>
-                    <div className="flex flex-row items-center gap-2 text-neutral-700 text-xs">
+                    <div className="flex flex-row items-center gap-2 text-primaryDark text-xs bg-primaryLight p-1 rounded">
                         <div className="hidden md:block">
                             <IoCalendarOutline size={16}/>
                         </div>
                         {date}
                     </div>
-                    <div className="flex flex-row items-center gap-2 text-neutral-700 text-xs">
+                    <div className="flex flex-row items-center gap-2 text-primaryDark text-xs bg-primaryLight p-1 rounded">
                         <div>
                             <WiTime9 size={16}/>
                         </div>
@@ -280,46 +267,44 @@ const ListingCard: React.FC<ListingCardProps> = ({
                     </div>
                 </div>
 
-                <div className="text-neutral-500 text-sm">
+                <div className="text-neutral-500 text-sm py-4">
                     {shortDescription}...
                 </div>
+
+                {/* {data.userId === currentUser?.id && (
+                    <div className="flex flex-row justify-between border-t border-dashed pt-4 text-neutral-500">
+                        <div className="hidden md:flex flex-row items-center gap-2 font-semibold">
+                            <div className="flex-row bg-neutral-100 p-2 rounded-full">
+                                <LuCalendarOff size={16} />
+                            </div>
+                            <div className="text-xs">Expire le {formattedExpirationDate}</div>
+                    
+                        </div>
+                    
+                        <div className="flex flex-row items-center gap-2 font-semibold">
+                            <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
+                                <LuUsers2 size={16} />
+                            </div>
+                            <div className="text-xs">{applicantCount}</div>
+                        </div>
+                    
+                        <div className="flex flex-row items-center gap-2 font-semibold">
+                            <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
+                                {currentStatus && <currentStatus.icon />}
+                            </div>
+                            <div className="text-xs">{currentStatus?.status}</div>
+                        </div>
+                    
+                    </div>
+
+                )} */}
+
             </div>
-        </div>
-        {data.userId === currentUser?.id && (
-            <div className="flex flex-row justify-between border-t border-dashed pt-4 text-neutral-500">
-                <div className="hidden md:flex flex-row items-center gap-2 font-semibold">
-                    <div className="flex-row bg-neutral-100 p-2 rounded-full">
-                        <LuCalendarOff size={16} />
-                    </div>
-                    <div className="text-xs">Expire le {formattedExpirationDate}</div>
-
-                </div>
-
-                <div className="flex flex-row items-center gap-2 font-semibold">
-                    <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
-                        <LuUsers2 size={16} />
-                    </div>
-                    <div className="text-xs">{applicantCount}</div>
-                </div>
-
-                <div className="flex flex-row items-center gap-2 font-semibold">
-                    <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
-                        {currentStatus && <currentStatus.icon />}
-                    </div>
-                    <div className="text-xs">{currentStatus?.status}</div>
-                </div>
-
+                
             </div>
 
-        )}
-        <div className="block lg:hidden">
-            <Button 
-                label="Voir cette offre"
-                onClick={showOfferDetail}
-                actionLevel="secondary"
-            />
-
-        </div>
+                    
+        
         
     </div>
     

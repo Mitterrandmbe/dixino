@@ -167,7 +167,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 `}
                             >
                                 <MenuItem 
-                                    onClick={() => router.push(singleLevelNestedRoutes.dashboard.listings + `?listingId=${listing?.id}`)}
+                                    onClick={() => router.push(singleLevelNestedRoutes.dashboard.listings)}
                                     label="Offres"
                                     icon={PiPaintBrushBroadFill}
                                 />
@@ -179,7 +179,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 `}
                             >
                                 <MenuItem 
-                                    onClick={() => router.push(singleLevelNestedRoutes.dashboard.offers + `?listingId=${listing?.id}`)}
+                                    onClick={() => router.push(singleLevelNestedRoutes.dashboard.offers)}
                                     label="Demandes"
                                     icon={IoCubeOutline}
                                 />
@@ -192,7 +192,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                             >
                                 {currentUser.role === "ADMIN" && (
                                     <MenuItem 
-                                        onClick={() => router.push(singleLevelNestedRoutes.dashboard.admin + `?listingId=${allListings?.id}`)}
+                                        onClick={() => router.push(singleLevelNestedRoutes.dashboard.admin)}
                                         label="Gerant"
                                         icon={GrUserAdmin}
                                     />

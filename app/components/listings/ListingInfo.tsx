@@ -73,7 +73,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 
 
     return (
-    <div className="flex flex-col gap-4 relative max-w-2xl mx-auto">
+    <div className="flex flex-col gap-4 relative max-w-full mx-auto">
         {currentUser?.id === listing.userId || currentUser?.role === "ADMIN" ? (
             <div>
 

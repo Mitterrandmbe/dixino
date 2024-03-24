@@ -11,9 +11,7 @@ export async function getApplicants(
         listingId: params.listingId
     });
 
-    // if (!listing) {
-    //   throw new Error("Offre introuvable ");
-    // }
+   
 
     
 

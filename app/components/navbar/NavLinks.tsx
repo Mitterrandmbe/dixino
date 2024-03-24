@@ -69,7 +69,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                         `}
                     >
                         <LinkItem 
-                            href="/dashboard/listings"
+                            href={singleLevelNestedRoutes.dashboard.listings}
                             label="Offres"
                             icon={PiPaintBrushBroadFill}
                         />
@@ -81,7 +81,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                         `}
                     >
                         <LinkItem 
-                            href={!listing ? singleLevelNestedRoutes.dashboard.offers : singleLevelNestedRoutes.dashboard.offers+ `?listingId=${listing?.id}`}
+                            href={singleLevelNestedRoutes.dashboard.offers}
                             label="Demandes"
                             icon={IoCubeOutline}
                             
@@ -95,7 +95,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                             `}
                         >
                                 <LinkItem 
-                                    href={singleLevelNestedRoutes.dashboard.admin + `?listingId=${allListings?.id}`}
+                                    href={singleLevelNestedRoutes.dashboard.admin}
                                     label="Gerant"
                                     icon={GrUserAdmin}
                                 />

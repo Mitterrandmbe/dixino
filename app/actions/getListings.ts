@@ -18,9 +18,9 @@ export async function getListings(
             query.userId = userId;
         };
 
-        // if (listingId) {
-        //     query.listingId = listingId;
-        // }
+        if (listingId) {
+            query.listingId = listingId;
+        }
         
         const listings = await prisma.listing.findMany({
             where: query,

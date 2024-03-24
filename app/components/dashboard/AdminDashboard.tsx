@@ -43,15 +43,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 <div className="text-neutral-600">{"Ici, tu peux avoir une vue rapide sur tes prestations et tes prochains rdv."}</div>
 
             </div>
-            
-            {/* <AdminDashboardMetrics 
-                listings={allListings}
-                allListings={allListings}
-                currentUser={currentUser}
-                reservations={reservations}
-                applicants={applicants}
-                services={services}
-            /> */}
 
             <AdminDashboardMetrics 
                 allListings={allListings}
