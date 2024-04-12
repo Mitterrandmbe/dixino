@@ -16,10 +16,9 @@ import { getAllListings } from "@/app/actions/getAllListings";
 
 interface DashboardProps {
     searchParams: IListingsParams;
-    listingId: IParams;
 }
 
-export default async function DashboardPage({ searchParams, listingId }: DashboardProps) {
+export default async function DashboardPage({ searchParams }: DashboardProps) {
     
     // if (!params || !params.listingId) {
     //     return (
