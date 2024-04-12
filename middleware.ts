@@ -6,6 +6,5 @@ export const config = {
         "/admin/:path*",
         "/checkout/:path*",
         "/dashboard/:path*",
-        
     ]
 }

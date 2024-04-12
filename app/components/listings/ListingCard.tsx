@@ -21,7 +21,7 @@ import { useParams, usePathname, useRouter, useSearchParams } from "next/navigat
 import Button from "../Button";
 
 import useListingInfoModal from "@/app/hooks/useListingInfoModal";
-import { singleLevelNestedRoutes } from "@/app/libs/routes";
+import { routes, singleLevelNestedRoutes } from "@/app/libs/routes";
 
 
 
@@ -78,6 +78,10 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
         if (pathname === "/dashboard/admin") {
             router.push(singleLevelNestedRoutes.dashboard.admin + `/${data.id}`);
+        }
+
+        if (pathname === "/offres") {
+            router.push(routes.services + `/${data.id}`);
         }
 
         

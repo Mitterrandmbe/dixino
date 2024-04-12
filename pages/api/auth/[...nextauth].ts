@@ -36,7 +36,7 @@ export const authOptions: AuthOptions = {
                 );
 
                 if (!isCorrectPassword) {
-                    throw new Error('Mot de passe incorrec. Réessayez!')
+                    throw new Error('Mot de passe incorrect. Réessayez!')
                 }
 
                 return user;

@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
+import { Resend } from 'resend';
+import { routes } from "@/app/libs/routes";
 
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import ApplicationSubmitted from "@/app/components/emails/ApplicationSubmitted";
 
 export async function POST(
     request: Request
@@ -32,6 +35,21 @@ export async function POST(
             }
         }
     });
+
+    const listingUrl = process.env.NEXT_PUBLIC_APP_URL + routes.services + `/${listingId}`
+
+    // Send email
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const sendMail = await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: 'ulrich_00132@hotmail.com',
+        subject: "Candidature",
+        react: ApplicationSubmitted({
+            username: "ulrich_00132@hotmail.com", 
+            updatedDate: new Date(),
+            listingUrl: listingUrl
+        })
+    })
 
     return NextResponse.json(listingAndApplication);
 

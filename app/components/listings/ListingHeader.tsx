@@ -28,6 +28,9 @@ import useArchiveListingModal from "@/app/hooks/useArchiveListingModal";
 
 import axios from "axios";
 import toast from "react-hot-toast";
+import useConfirmActionModal from "@/app/hooks/useConfirmActionModal";
+import ConfirmAction from "../modals/ConfirmAction";
+import Heading from "../Heading";
 
 
 interface ListingHeaderProps {
@@ -53,6 +56,7 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
     currentUser,
     onSelect
 }) => {
+    const confirmActionModal = useConfirmActionModal();
     const [isSelected, setIsSelected] = useState(data.id);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -154,14 +158,29 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
     const listingId = searchParams?.get("listingId");
     const pathName = usePathname();
 
+    const applicationStatus = useMemo(() => {
+        if(!currentUser) {
+            return null
+        };
 
+        if (data.isHiredId === currentUser?.id) {
+            return {
+                status: "Candidature retenue"
+            }
+        };
 
-    // // Get current URL
-    // useEffect(() => {
-    //     pathName = usePathname() 
-    // }, [pathName])
+        if (data.applicantIds.includes(currentUser?.id)) {
+            return {
+                status: "Candidature en cours"
+            }
+        };
 
-    
+        return {
+            status: "Postuler"
+        }
+
+        
+    }, [currentUser, data])
     
     
     // HANDLE URL AND ROUTES
@@ -275,13 +294,52 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
             setIsLoading(false);
         }
 
-    }, [data, currentUser])
+    }, [data, currentUser]);
 
 
+    // Cancel application
+    const cancelApplication = useCallback(() => {
+        setIsLoading(true);
+        try {
+            axios.post("/api/cancel-application", {
+                listingId: data.id,
+            });
+            toast.success("Prestation annulée");
+            confirmActionModal.onClose()
+        } catch (error) {
+            toast.error("Oups, une erreur est survenue");
+            setIsLoading(false);
+            confirmActionModal.onClose()
+        } finally {
+            setIsLoading(false)
+        }
+    }, [data, currentUser]);
+
+
+    // Cancel application bodyContent
+    const bodyContent = (
+        <div>
+            <Heading 
+                title="⛔️ Annuler prestation"
+                subtitle="Vous êtes sur le point d'annuler votre prestation"
+                center
+            />
+        </div>
+    )
     
     
     return (
+    <>
     
+    <ConfirmAction 
+        title="Refuser prestation" 
+        data={data} 
+        currentUser={currentUser ? currentUser : null} 
+        onClick={cancelApplication} 
+        bodyContent={bodyContent} 
+        isLoading={false} 
+        actionLabel={"Confirmer annulation"}        
+    />
     <div 
         className={`
             flex
@@ -310,11 +368,20 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
                     <div className="flex flex-row gap-2">
                         {currentUser && data.userId !== currentUser?.id && (
                             <Button
-                                label={data.isHiredId === currentUser?.id ? "Candidature en cours" : "Postuler"}
+                                label={applicationStatus ? applicationStatus?.status : "Postuler"}
                                 small
                                 actionLevel={data.isHiredId === currentUser?.id ? "outline" : "secondary"}
                                 onClick={onApply}
                                 disabled={data.isHiredId === currentUser?.id || !isHiredNotEmpty || data.serviceDate < new Date() || data.applicantIds.includes(currentUser.id) ? true : isLoading}
+                            />
+                        )}
+                        {currentUser && data.isHiredId === currentUser.id &&(
+                            <Button 
+                                label="Annuler"
+                                actionLevel="outline"
+                                disabled={isLoading}
+                                onClick={confirmActionModal.onOpen}
+                                small
                             />
                         )}
                         {data.userId === currentUser?.id && (
@@ -367,32 +434,35 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
                 </div>
             </div>
         </div>
-        <div className="flex flex-row justify-between border-t border-dashed pt-4 text-neutral-500">
-            <div className="hidden md:flex flex-row items-center gap-2 font-semibold">
-                <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
-                    <LuCalendarOff size={16} />
+        {currentUser && (
+            <div className="flex flex-row justify-between border-t border-dashed pt-4 text-neutral-500">
+                <div className="hidden md:flex flex-row items-center gap-2 font-semibold">
+                    <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
+                        <LuCalendarOff size={16} />
+                    </div>
+                    <div className="text-xs">Expire le {formattedExpirationDate}</div>
+
                 </div>
-                <div className="text-xs">Expire le {formattedExpirationDate}</div>
+
+                <div className="flex flex-row items-center gap-2 font-semibold">
+                    <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
+                        <LuUsers2 size={16} />
+                    </div>
+                    <div className="text-xs">{applicantCount}</div>
+                </div>
+
+                <div className="flex flex-row items-center gap-2 font-semibold">
+                    <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
+                        {currentStatus && <currentStatus.icon />}
+                    </div>
+                    <div className="text-xs">{currentStatus?.status}</div>
+                </div>
 
             </div>
-
-            <div className="flex flex-row items-center gap-2 font-semibold">
-                <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
-                    <LuUsers2 size={16} />
-                </div>
-                <div className="text-xs">{applicantCount}</div>
-            </div>
-
-            <div className="flex flex-row items-center gap-2 font-semibold">
-                <div className="flex flex-row bg-neutral-100 p-2 rounded-full">
-                    {currentStatus && <currentStatus.icon />}
-                </div>
-                <div className="text-xs">{currentStatus?.status}</div>
-            </div>
-
-        </div>
+        )}
         
     </div>
+    </>
     
   )
 }

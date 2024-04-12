@@ -29,10 +29,10 @@ import {
       <Body style={main}>
         <Container style={container}>
           <Img
-            src="https://www.dojomentors.com/_next/image?url=%2Fimages%2Fdojo-mentors-logo.png&w=128&q=75"
+            src="https://www.dixino.be/_next/image?url=%2Fimages%2FDixino-logo.png&w=128&q=75"
             width="100"
             height="100"
-            alt="Dojo Mentors"
+            alt="Dixino"
           />
   
           {/* <Text style={title}>

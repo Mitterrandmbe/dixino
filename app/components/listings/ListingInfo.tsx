@@ -78,7 +78,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             <div>
 
                 <div className=" z-[5] bg-white sticky top-0 w-full">
-                <div className="flex flex-col">
+                <div className="flex flex-col w-fit">
                     {params?.listingId && (
                         <div 
                             onClick={() => router.back()}
@@ -186,7 +186,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             <div>
 
                 <div className=" z-[5] bg-white sticky top-0 w-full">
-                <div className="flex flex-col">
+                <div className="flex flex-col w-fit">
                     {params?.listingId && (
                         <div 
                             onClick={() => router.back()}

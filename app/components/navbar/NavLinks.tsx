@@ -145,11 +145,8 @@ const NavLinks: React.FC<NavLinksProps> = ({
                 <Link href={"/"} className="text-black hover:text-primary">
                     Comment ça marche?
                 </Link>
-                <Link href={"/"} className="text-black hover:text-primary">
+                <Link href={routes.services} className="text-black hover:text-primary">
                     Services
-                </Link>
-                <Link href={"/"} className="text-black hover:text-primary">
-                    Tarifs
                 </Link>
                 <Link href={"/"} className="text-black hover:text-primary">
                     Devenir partenaire

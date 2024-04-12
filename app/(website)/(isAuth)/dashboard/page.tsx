@@ -19,8 +19,18 @@ interface DashboardProps {
     listingId: IParams;
 }
 
-export default async function DashboardPage({ params }: {params: DashboardProps}) {
+export default async function DashboardPage({ searchParams, listingId }: DashboardProps) {
     
+    // if (!params || !params.listingId) {
+    //     return (
+    //         <EmptyState
+    //             title="Oups!"
+    //             subtitle="Offre non-disponible"
+    //         />
+    //     )
+    // }
+
+
     const currentUser = await getCurrentUser();
     if(!currentUser) {
         return (
@@ -43,8 +53,8 @@ export default async function DashboardPage({ params }: {params: DashboardProps}
         )
     };
 
-    const { applicants, services } = await getApplicants(params.searchParams);
-    const { employers } = await getEmployers(params.searchParams);
+    const { applicants, services } = await getApplicants(searchParams);
+    const { employers } = await getEmployers(searchParams);
 
 
     const reservations = await getReservations({ userId: currentUser.id });

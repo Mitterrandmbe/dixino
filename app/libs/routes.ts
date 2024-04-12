@@ -11,7 +11,8 @@ export const routes = {
     privacy: "/privacy",
     admin: "/admin",
     legal: "/legal",
-    cookies: "/cookies"
+    cookies: "/cookies",
+    services: "/offres",
 };
 
 export const singleLevelNestedRoutes = {

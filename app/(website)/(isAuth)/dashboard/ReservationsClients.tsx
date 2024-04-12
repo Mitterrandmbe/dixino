@@ -24,7 +24,7 @@ const ReservationsClients: React.FC<ReservationsClientsProps> = ({
   }
 
   return (
-    <div className="h-full">
+    <div className="h-full cursor-pointer">
       {reservations.map((reservation: any) => (
         <ReservationCard
           key={reservation.id}

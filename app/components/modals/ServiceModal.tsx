@@ -72,6 +72,7 @@ const ServiceModal = () => {
             return onNext();
         };
 
+
         setIsLoading(true);
 
         axios.post("/api/services-client", data)
@@ -93,7 +94,7 @@ const ServiceModal = () => {
     const actionLabel = useMemo(() => {
         if (step === STEPS.PRICING) {
             return "Valider"
-        }
+        }     
 
         return "Continuer"
     }, [step]);
@@ -101,10 +102,10 @@ const ServiceModal = () => {
     const secondaryActionLabel = useMemo(() => {
         if (step === STEPS.CATEGORY) {
             return undefined
-        }
+        };
+        
         return "Précédent";
     }, [step]);
-
 
     // BODY CONTENT
 
