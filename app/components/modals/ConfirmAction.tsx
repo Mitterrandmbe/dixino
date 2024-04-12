@@ -15,7 +15,7 @@ interface ConfirmActionProps {
 }
 
 
-const confirmAction: React.FC<ConfirmActionProps> = ({
+const ConfirmAction: React.FC<ConfirmActionProps> = ({
   data,
   currentUser,
   onClick,
@@ -53,4 +53,4 @@ const confirmAction: React.FC<ConfirmActionProps> = ({
   )
 }
 
-export default confirmAction
+export default ConfirmAction

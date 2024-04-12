@@ -57,7 +57,7 @@ export const CancelApplicationEmail = ({
             <Text style={paragraph}>
               Voici un lien vers les offres encore disponibles {" "}
               <Link href={listingUrl} style={link}>
-                Voir l'offre
+                Voir l{"'"}offre
               </Link>{" "}
             </Text>
             <Text style={paragraph}>

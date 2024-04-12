@@ -52,16 +52,16 @@ export const ApplicationSubmittedEmail = ({
           <Section style={content}>
             <Text style={paragraph}>👋 Hey {username},</Text>
             <Text style={paragraph}>
-              Bravo! Tu as soumis une nouvelle candidature pour une offre aujourd'hui
+              Bravo! Tu as soumis une nouvelle candidature pour une offre aujourd{"'"}hui
             </Text>
             <Text style={paragraph}>
-              Voici un lien vers l'offre en question {" "}
+              Voici un lien vers l{"'"}offre en question {" "}
               <Link href={listingUrl} style={link}>
-                Voir l'offre
+                Voir l{"'"}offre
               </Link>{" "}
             </Text>
             <Text style={paragraph}>
-              Rappelle toi de consulter régulièrement ton compte pour en savoir plus sur l'évolution de ta candidature.
+              Rappelle toi de consulter régulièrement ton compte pour en savoir plus sur l{"'"}évolution de ta candidature.
             </Text>
             <Text style={paragraph}>
               Tu as des questions ?{" "}

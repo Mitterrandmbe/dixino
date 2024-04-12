@@ -42,10 +42,10 @@ export async function POST(
     const resend = new Resend(process.env.RESEND_API_KEY);
     const sendMail = await resend.emails.send({
         from: "onboarding@resend.dev",
-        to: 'ulrich_00132@hotmail.com',
+        to: currentUser.email!,
         subject: "Candidature",
         react: ApplicationSubmitted({
-            username: "ulrich_00132@hotmail.com", 
+            username: currentUser.firstName, 
             updatedDate: new Date(),
             listingUrl: listingUrl
         })

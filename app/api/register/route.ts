@@ -31,7 +31,7 @@ export async function POST(
     const resend = new Resend(process.env.RESEND_API_KEY);
     const data = await resend.emails.send({
         from: "onboarding@resend.dev",
-        to: 'ulrich_00132@hotmail.com',
+        to: email,
         subject: "Hello World",
         html: "<p>Bienvenue sur Dixino</p>"
     });

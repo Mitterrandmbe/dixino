@@ -64,20 +64,34 @@ export async function POST(req: Request) {
 
         // Service Date
         const serviceDate = new Date(updatedListing.serviceDate);
+
+        // Applicant
+        const applicantUser = await prisma.user.findUnique({
+            where: {
+                id: applicantId
+            }
+        });
+
+        // Employer
+        const employerUser = await prisma.user.findUnique({
+            where: {
+                id: updatedListing.userId
+            }
+        });
         
 
         // SEND EMAIL TO EMPLOYER
         const resend = new Resend(process.env.RESEND_API_KEY);
         await resend.emails.send({
             from: "onboarding@resend.dev",
-            to: 'ulrich_00132@hotmail.com',
+            to: employerUser?.email!,
             subject: "Votre réservation",
             html: `<p>Vous avez réservé un professionnel pour une séance ${updatedListing.category} pour ce ${updatedListing.serviceDate}</p>`
         });
 
         await resend.emails.send({
             from: "onboarding@resend.dev",
-            to: 'ulrich_00132@hotmail.com',
+            to: applicantUser?.email!,
             subject: "Une nouvelle réservation",
             html: `<p>Votre candidature a été retenue pour une séance ${updatedListing.category} pour ce ${updatedListing.serviceDate}</p>`
         });

@@ -22,12 +22,11 @@ export default async function ServicesPage() {
     // const listings = await getListings(params.listingId);
     const listings = await getAllListings()
     
-    if (!listings) {
+    if (!listings || listings.length === 0) {
         return (
             <EmptyState 
                 title="Offre introuvable"
                 subtitle="Aucune offre trouvée pour le moment"
-                actionLabel="onLogin"
             />
         )
     }

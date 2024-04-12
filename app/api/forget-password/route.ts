@@ -56,10 +56,10 @@ export async function POST(
     const resend = new Resend(process.env.RESEND_API_KEY);
     const emailToSend = await resend.emails.create({
         from: "onboarding@resend.dev",
-        to: "ulrich_00132@hotmail.com",
+        to: currentUser.email!,
         subject: "Votre demande de réinitialiser votre mot de passe",
         react: ResetPasswordEmail({ 
-            username: "ulrich_00132@hotmail.com", 
+            username: currentUser.firstName, 
             updatedDate: new Date(),
             resetUrl: resetUrl
         }),

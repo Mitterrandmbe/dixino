@@ -37,7 +37,7 @@ export async function POST(
     const resend = new Resend(process.env.RESEND_API_KEY);
     const sendEmail = await resend.emails.create({
         from: "onboarding@resend.dev",
-        to: "ulrich_00132@hotmail.com",
+        to: currentUser.email!,
         subject: "Mise à jour de votre mot de passe",
         react: ConfirmNewPasswordEmail({ username: currentUser.firstName})
     })

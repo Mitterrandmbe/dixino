@@ -58,9 +58,9 @@ const ListingInfoPublic: React.FC<ListingInfoPublicProps> = ({
         isSelected(value)
       };
 
-      const filteredServices = useMemo(() => {
-        return services?.map((service) => service )
-      }, [services]);
+    //   const filteredServices = useMemo(() => {
+    //     return services?.map((service) => service )
+    //   }, [services]);
 
 
     return (
@@ -84,7 +84,6 @@ const ListingInfoPublic: React.FC<ListingInfoPublicProps> = ({
         
                 </div>
                 
-                {selected === "Description" && (
                     <div>
                         <ListingHeader
                             data={listing}
@@ -101,7 +100,7 @@ const ListingInfoPublic: React.FC<ListingInfoPublicProps> = ({
                         </div>
         
                     </div>
-                )}
+                
         
                 
                 
