@@ -23,6 +23,7 @@ import useOfferModal from '@/app/hooks/useOfferModal';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { routes, singleLevelNestedRoutes } from "@/app/libs/routes";
+import Link from 'next/link';
 
 interface UserMenuProps {
     currentUser?: SafeUser | null;
@@ -234,6 +235,30 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     ) : (
                         
                         <>
+                        <div className='px-2 flex flex-col gap-2'>
+                            <MenuItem 
+                                onClick={() => router.push(routes.home)}
+                                label="Acceuil"
+                            />
+                            <MenuItem 
+                                onClick={() => router.push(routes.home)}
+                                label="Comment ça marche?"
+                            />
+                            <MenuItem 
+                                onClick={() => router.push(routes.services)}
+                                label="Services"
+                            />
+                            <MenuItem 
+                                onClick={() => router.push(routes.home)}
+                                label="Devenir partenaire"
+                            />
+                            <MenuItem 
+                                onClick={() => router.push(routes.home)}
+                                label="Contact"
+                            />
+                            
+                        </div>
+                        <hr />
                         <MenuItem 
                             onClick={loginModal.onOpen}
                             label="Se connecter"
