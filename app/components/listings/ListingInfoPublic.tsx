@@ -46,17 +46,17 @@ const ListingInfoPublic: React.FC<ListingInfoPublicProps> = ({
         )
     }
 
-    const getTab = useMemo(() => {
+    // const getTab = useMemo(() => {
 
-        return listingTabs.map((item) => item.label)
+    //     return listingTabs.map((item) => item.label)
         
-      }, [listingTabs, listing])
+    //   }, [listingTabs, listing])
     
-      const [selected, isSelected] = useState("Description");
+    //   const [selected, isSelected] = useState("Description");
     
-      const handleSelect = (value: string) => {
-        isSelected(value)
-      };
+    //   const handleSelect = (value: string) => {
+    //     isSelected(value)
+    //   };
 
     //   const filteredServices = useMemo(() => {
     //     return services?.map((service) => service )
