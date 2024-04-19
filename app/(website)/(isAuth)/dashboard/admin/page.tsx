@@ -51,6 +51,7 @@ const AdminPage = async () => {
 
     
     return (
+        <div className="bg-neutral-100 h-screen">
         <Container>
             <div
                 className="
@@ -77,6 +78,7 @@ const AdminPage = async () => {
     
             </div>
         </Container>
+        </div>
     )
 };
 

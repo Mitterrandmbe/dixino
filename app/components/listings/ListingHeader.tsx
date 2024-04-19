@@ -32,6 +32,11 @@ import useConfirmActionModal from "@/app/hooks/useConfirmActionModal";
 import ConfirmAction from "../modals/ConfirmAction";
 import Heading from "../Heading";
 
+enum CONTEXT {
+    APPLICATION = 0,
+    CANCELATION = 1
+}
+
 
 interface ListingHeaderProps {
     data: SafeListing;
@@ -65,6 +70,9 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
 
     const isHiredNotEmpty = !data.isHiredId;
 
+    const [applyNow, setApplyNow ] = useState(false);
+
+    const [context, setContext] = useState(CONTEXT.APPLICATION)
     // CATEGORIES
 
     const category = useMemo(() => {
@@ -229,27 +237,53 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
 
     
     //Apply for this offer
+    const showApplyModal = useCallback(() => {
+        setApplyNow(true);
+        confirmActionModal.onOpen();
+    }, [confirmActionModal])
+
     const onApply = useCallback(() => {
         if (!currentUser) {
             return loginModal.onOpen();
         };
 
         setIsLoading(true);
+        setApplyNow(true);
+        setContext(CONTEXT.APPLICATION);
 
-        if (listingId) {
-            router.replace(pathName +"?listingId=" + listingId)
-        };
+        // if (listingId) {
+        //     router.replace(pathName +"?listingId=" + listingId)
+        // };
 
+        try {
+            
+            axios.post("/api/applications", {
+                listingId: data.id,
+                userId: currentUser?.id,
+            })
+            .then(() => {
+                toast.success("Offre crée avec succès 🙌");
+                confirmActionModal.onClose();
+                router.refresh();
 
+            })
+            .catch(() => {
+                toast.error("Oups 😞! Une erreur est survenue.")
+            })
+
+        } catch (error) {
+            toast.error("Oups, une errer est survenue");
+            setIsLoading(true);
+            setIsLoading(false);
+        } finally {
+            setIsLoading(false);
+            setContext(CONTEXT.APPLICATION)
+        }
 
         return applicationModal.onOpen();
         
-        // axios.post("/api/applicants", {
-        //     listingId: data.id,
-        //     userId: currentUser.id,
-        // });
 
-    }, [applicationModal, loginModal, currentUser, router, listingId]);
+    }, [applicationModal, loginModal, currentUser, router, listingId, confirmActionModal]);
 
     // Archive this offer
     const onArchive = useCallback(() => {
@@ -280,7 +314,6 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
     // Approve this offer
     const onDecline = useCallback(() => {
         setIsLoading(true);
-
         try {
             axios.post("/api/decline-listing", {
                 listingId: data.id
@@ -299,6 +332,7 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
 
     // Cancel application
     const cancelApplication = useCallback(() => {
+        setContext(CONTEXT.CANCELATION)
         setIsLoading(true);
         try {
             axios.post("/api/cancel-application", {
@@ -311,20 +345,29 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
             setIsLoading(false);
             confirmActionModal.onClose()
         } finally {
-            setIsLoading(false)
+            setIsLoading(false);
+            setContext(CONTEXT.APPLICATION)
         }
     }, [data, currentUser]);
 
 
     // Cancel application bodyContent
-    const bodyContent = (
+    let bodyContent = (
         <div>
             <Heading 
-                title="⛔️ Annuler prestation"
-                subtitle="Vous êtes sur le point d'annuler votre prestation"
+                title="Soumettre une candidature"
+                subtitle="Vous êtes sur le point de postuler pour cette prestation"
                 center
             />
         </div>
+    )
+
+    if (context === CONTEXT.CANCELATION) (
+        <Heading 
+            title="⛔️ Annuler prestation"
+            subtitle="Vous êtes sur le point d'annuler votre prestation"
+            center
+        />
     )
     
     
@@ -332,13 +375,13 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
     <>
     
     <ConfirmAction 
-        title="Refuser prestation" 
+        title={applyNow ? "Postuler pour cette offre" : "Refuser prestation"} 
         data={data} 
         currentUser={currentUser ? currentUser : null} 
-        onClick={cancelApplication} 
+        onClick={applyNow ? onApply : cancelApplication} 
         bodyContent={bodyContent} 
         isLoading={false} 
-        actionLabel={"Confirmer annulation"}        
+        actionLabel={applyNow ? "Postuler maintenant" : "Confirmer annulation"}        
     />
     <div 
         className={`
@@ -346,6 +389,7 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
             flex-col
             gap-8
             p-4
+            max-w-screen-lg
         `}
         >
         <div
@@ -356,7 +400,7 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
             "
         >
             <div className="col-span-1 text-2xl my-auto w-full aspect-square">
-                <div className="bg-neutral-100 w-full h-full flex flex-col justify-center items-center text-4xl 2xl:text-6xl rounded-full">
+                <div className="bg-primary w-full h-full xl:max-w-1/2 xl:max-h-1/2 flex flex-col justify-center items-center text-4xl md:text-5xl lg:text-5xl 2xl:text-6xl rounded-lg">
                     {category && <category.icon />} 
                 </div>
                    
@@ -371,7 +415,7 @@ const ListingHeader: React.FC<ListingHeaderProps> = ({
                                 label={applicationStatus ? applicationStatus?.status : "Postuler"}
                                 small
                                 actionLevel={data.isHiredId === currentUser?.id ? "outline" : "secondary"}
-                                onClick={onApply}
+                                onClick={showApplyModal}
                                 disabled={data.isHiredId === currentUser?.id || !isHiredNotEmpty || data.serviceDate < new Date() || data.applicantIds.includes(currentUser.id) ? true : isLoading}
                             />
                         )}

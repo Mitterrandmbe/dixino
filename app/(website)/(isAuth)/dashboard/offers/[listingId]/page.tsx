@@ -35,7 +35,7 @@ export default async function OffersPage({ params }: { params: IParams }) {
   return (
     <div className="bg-neutral-100 h-screen overflow-auto">
       <Container>
-        <div className="bg-white w-fit p-4 lg:p-8 mx-auto mt-8 rounded-md">
+        <div className="bg-white max-w-screen-lg p-4 lg:p-8 mx-auto mt-8 rounded-md">
           <ListingInfo 
             listing={listing} 
             currentUser={currentUser} 

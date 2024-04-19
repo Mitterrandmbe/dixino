@@ -236,11 +236,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
             rounded-md
             gap-8
             hover:shadow-xl
+            h-fit
         `}
         >
             <div className="grid grid-cols gap-4 w-full">
                 <div className="col-span-1 text-2xl my-auto w-full">
-                    <div className="bg-neutral-100 w-[60px] h-[60px] flex flex-row justify-center items-center text-4xl 2xl:text-6xl rounded-lg">
+                    <div className="bg-primary w-[60px] h-[60px] flex flex-row justify-center items-center text-4xl 2xl:text-6xl rounded-lg">
                         {category && <category.icon size={32}/>} 
                     </div>
                 </div>

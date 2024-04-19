@@ -36,6 +36,7 @@ export default async function ServicesPage() {
     
     
     return (
+        <div className="bg-neutral-100 h-screen">
         <Container>
         <div 
             className="
@@ -47,7 +48,7 @@ export default async function ServicesPage() {
                 xl:grid-cols-3
                 2xl:grid-cols-3
                 gap-8
-                mt-12
+                pt-12
             "
         >
                 {listings.map((listing: any) => {
@@ -68,5 +69,6 @@ export default async function ServicesPage() {
                 })}
         </div>
         </Container>
+        </div>
     )
 }

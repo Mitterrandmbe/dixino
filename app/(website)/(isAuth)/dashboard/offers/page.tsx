@@ -57,7 +57,7 @@ export default async function OffersPage() {
 
 
     return (
-        
+        <div className="bg-neutral-100 h-screen">
         <Container>
             <div
                 className="
@@ -69,7 +69,7 @@ export default async function OffersPage() {
                     xl:grid-cols-3
                     2xl:grid-cols-3
                     gap-8
-                    mt-12
+                    pt-12
                 "
             >
                 {filteredListings.map((listing: any) => {
@@ -92,6 +92,7 @@ export default async function OffersPage() {
 
             </div>
         </Container>
+        </div>
         
     )
 }
