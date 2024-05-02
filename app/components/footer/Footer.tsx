@@ -7,8 +7,11 @@ import { FaBloggerB } from "react-icons/fa";
 import CalendarInput from '../inputs/CalendarInput';
 import Link from 'next/link';
 import { routes, singleLevelNestedRoutes } from '@/app/libs/routes';
+import { categories } from '@/app/libs/data';
+
 
 const Footer = () => {
+    
   return (
     <div
         className='
@@ -27,27 +30,44 @@ const Footer = () => {
             className='span-col-1 text-center lg:text-left'
         >
             <h3 className='text-md font-semibold pb-4'>Services</h3>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'>Lessive</p>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'>Réparation</p>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'>Nettoyage</p>
+            {categories && (
+                categories.map((category, key) => (
+                    <p
+                        key={category.label}
+                        className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary pb-2'
+                    >
+                        <Link href={`/${category.label}`}>{category.label}</Link>
+                        
+                    </p>
+
+                ))
+            )}
+            {/* <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'>Réparation</p>
+            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'>Nettoyage</p> */}
         </div>
         <div
             className='span-col-1 text-center lg:text-left'
         >
             <h3 className='text-md font-semibold pb-4'>Pour les professionnels</h3>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'>Devenir partenaire</p>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'>Etudiants</p>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'>Avantages</p>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'><Link href={routes.terms}>Conditions</Link></p>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'><Link href={routes.legal}>Mentions légales</Link></p>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'><Link href={routes.cookies}>Cookies</Link></p>
+            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary pb-2'>Devenir partenaire</p>
+            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary pb-2'>Etudiants</p>
+            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary pb-2'>Avantages</p>
+            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary pb-2'><Link href={routes.terms}>Conditions</Link></p>
+            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary pb-2'><Link href={routes.legal}>Mentions légales</Link></p>
+            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary pb-2'><Link href={routes.cookies}>Cookies</Link></p>
         </div>
         <div
             className='span-col-1 text-center lg:text-left'
         >
             <h3 className='text-md font-semibold pb-4'>Aide</h3>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'>Contact</p>
-            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary'>FAQ</p>
+            <p 
+                
+                className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary pb-2'
+            >
+                <Link href={routes.contact}>Contact</Link>
+                
+            </p>
+            <p className='text-sm font-light text-neutral-700 cursor-pointer hover:text-primary pb-2'>FAQ</p>
             
         </div>
         <div

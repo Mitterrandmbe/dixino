@@ -48,9 +48,9 @@ const HowItWorks = () => {
                         />
                     </div>
                     <div className='flex flex-col gap-4'>
-                        <h3 className='font-semibold'>Un nettoyage sans tracas</h3>
+                        <h3 className='font-semibold'>Postez une offre</h3>
                         <p className='text-neutral-700 text-sm'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae 
+                            Dites-nous le service dont vous avez besoin. Où et quand vous aimeriez que nos professionnels interviennent.
                         </p>
 
                     </div>
@@ -83,9 +83,9 @@ const HowItWorks = () => {
                         />
                     </div>
                     <div className='flex flex-col gap-4'>
-                        <h3 className='font-semibold'>Un nettoyage sans tracas</h3>
+                        <h3 className='font-semibold'>Choisissez la meilleure offre</h3>
                         <p className='text-neutral-700 text-sm'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae 
+                            Nous nous chargeons de vous trouver les meilleurs prestataires parmi nos professionnels. Sélectionnez l'offre qui vous convient le mieux.
                         </p>
 
                     </div>
@@ -118,9 +118,9 @@ const HowItWorks = () => {
                         />
                     </div>
                     <div className='flex flex-col gap-4'>
-                        <h3 className='font-semibold'>Un nettoyage sans tracas</h3>
+                        <h3 className='font-semibold'>Profitez de votre temps</h3>
                         <p className='text-neutral-700 text-sm'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae 
+                            Relaxez-vous et profitez de votre temps libre. Nos professionnels s'occupent de tout selon votre votre demande. 
                         </p>
 
                     </div>

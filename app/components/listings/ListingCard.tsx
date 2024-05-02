@@ -80,8 +80,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
             router.push(singleLevelNestedRoutes.dashboard.admin + `/${data.id}`);
         }
 
-        if (pathname === "/offres") {
+        if (pathname === "/offres" ) {
             router.push(routes.services + `/${data.id}`);
+        }
+
+        if (pathname === `/${category?.label}` ) {
+            router.push(`/${category?.label}/${data.id}`);
         }
 
         

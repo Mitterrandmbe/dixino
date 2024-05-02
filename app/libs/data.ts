@@ -1,15 +1,31 @@
-import { MdHealthAndSafety, MdOutlineDashboard } from "react-icons/md";
+import { 
+    MdHealthAndSafety, 
+    MdOutlineDashboard,
+    MdCarpenter,
+    MdOutlineDesignServices,
+    MdContentCut,
+    MdOutlinePhoneIphone
+} from "react-icons/md";
 import { GiVacuumCleaner } from "react-icons/gi";
 import { GiTap } from "react-icons/gi";
 
 import { IoIosList } from "react-icons/io";
-import { LuMapPin, LuCalendarOff, LuUsers2, LuArchive, LuBaby } from "react-icons/lu";
+import { LuMapPin, LuCalendarOff, LuUsers2, LuArchive, LuBaby, LuLanguages } from "react-icons/lu";
 import { HiOutlineEnvelope } from "react-icons/hi2";
-import { FaParachuteBox, FaPeopleCarryBox, FaPeoplePulling, FaPeopleRoof } from "react-icons/fa6";
+import { 
+    FaParachuteBox, 
+    FaPeopleCarryBox, 
+    FaPeoplePulling, 
+    FaPeopleRoof,
+    FaPaintRoller
+} from "react-icons/fa6";
 import { TbIroning2,  } from "react-icons/tb";
-import { GiGardeningShears } from "react-icons/gi";
+import { GiGardeningShears, GiCook } from "react-icons/gi";
 import { BsPlug } from "react-icons/bs";
-import { IoSchoolOutline } from "react-icons/io5";
+import { IoSchoolOutline, IoWalletOutline } from "react-icons/io5";
+import { BiFridge, BiSolidDrink } from "react-icons/bi";
+import { GrUserWorker } from "react-icons/gr";
+
 
 
 
@@ -92,73 +108,73 @@ export const categories = [
     },
     {
         label: "Déménagement",
-        icon: IoSchoolOutline,
+        icon: FaPeopleCarryBox,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Frigoriste",
-        icon: IoSchoolOutline,
+        icon: BiFridge,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Traducteur de text",
-        icon: IoSchoolOutline,
+        icon: LuLanguages,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Hommes de chantier",
-        icon: IoSchoolOutline,
+        icon: GrUserWorker,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Peintre",
-        icon: IoSchoolOutline,
+        icon: FaPaintRoller,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Menuiserie",
-        icon: IoSchoolOutline,
+        icon: MdCarpenter,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Décoration",
-        icon: IoSchoolOutline,
+        icon: MdOutlineDesignServices,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Serveur / Hôtesse",
-        icon: IoSchoolOutline,
+        icon: BiSolidDrink,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Coiffure",
-        icon: IoSchoolOutline,
+        icon: MdContentCut,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Comptable",
-        icon: IoSchoolOutline,
+        icon: IoWalletOutline,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Aide cuisinier(ère)",
-        icon: IoSchoolOutline,
+        icon: GiCook,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },
     {
         label: "Réparateur de GSM & ordinateur",
-        icon: IoSchoolOutline,
+        icon: MdOutlinePhoneIphone,
         description: "Un infirmier(e) dévoué pour vos soins à domicile",
         color: "#FFCEFE"
     },

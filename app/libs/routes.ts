@@ -13,6 +13,7 @@ export const routes = {
     legal: "/legal",
     cookies: "/cookies",
     services: "/offres",
+    contact: "/contact"
 };
 
 export const singleLevelNestedRoutes = {
