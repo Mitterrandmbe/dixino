@@ -30,6 +30,7 @@ const Services = () => {
                     <Link
                         href={`/${category.label}`}
                         rel='noopener noreferrer'
+                        key={category.label}
                     >
                         <div 
                             className='
