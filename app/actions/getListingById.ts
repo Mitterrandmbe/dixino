@@ -20,7 +20,7 @@ export default async function getListingsById(
             },
             include: {
                 user: true
-            }
+            },
         });
 
         if (!listing) {

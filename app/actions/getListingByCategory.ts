@@ -13,7 +13,10 @@ export async function getListingByCategory(params: IParams) {
                 serviceDate: "asc"
             },
             where: {
-                category: params.category
+                category: params.category,
+                serviceDate: {
+                    gte: new Date()
+                }
             }
         });
 

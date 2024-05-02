@@ -83,14 +83,14 @@ export async function POST(req: Request) {
         // SEND EMAIL TO EMPLOYER
         const resend = new Resend(process.env.RESEND_API_KEY);
         await resend.emails.send({
-            from: "onboarding@resend.dev",
+            from: "noreply@dixino.be",
             to: employerUser?.email!,
             subject: "Votre réservation",
             html: `<p>Vous avez réservé un professionnel pour une séance ${updatedListing.category} pour ce ${updatedListing.serviceDate}</p>`
         });
 
         await resend.emails.send({
-            from: "onboarding@resend.dev",
+            from: "noreply@dixino.be",
             to: applicantUser?.email!,
             subject: "Une nouvelle réservation",
             html: `<p>Votre candidature a été retenue pour une séance ${updatedListing.category} pour ce ${updatedListing.serviceDate}</p>`

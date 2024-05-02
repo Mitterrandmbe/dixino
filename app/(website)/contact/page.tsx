@@ -27,7 +27,7 @@ const ContactPage = () => {
                             <div className="w-[80px] h-[80px] bg-primary flex items-center justify-center rounded-full">
                                 <IoLogoWhatsapp size={32} />
                             </div>
-                            <p>{"(+32)0472 57 4 40"}</p>
+                            <p>{"(+32)0460 21 41 28"}</p>
                         </div>
                     </div>
                     

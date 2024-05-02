@@ -253,7 +253,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 label="Devenir partenaire"
                             />
                             <MenuItem 
-                                onClick={() => router.push(routes.home)}
+                                onClick={() => router.push(routes.contact)}
                                 label="Contact"
                             />
                             

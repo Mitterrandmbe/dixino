@@ -32,16 +32,16 @@ import { GrUserWorker } from "react-icons/gr";
 
 export const faqListing = [
     {
-        question: "Comment réserver un service ?",
-        answer: 'Voici la réponse Comment réserser un service...".'
+        question: "Comment réserver un service?",
+        answer: 'Pour réserver un service, il suffit de poster une offre sur la plateforme. Vous recevrez à ce moment des candidatures de plusieurs de nos professionnels. il vous suffit de retenir le ou la candidat(e) qui vous convient le mieux et de procéder au paiement.  Voilà, votre réservation est faite.'
     },
     {
-        question: "Comment se passe le paiement des prestation ?",
-        answer: "Plus d'informations sur les paiements...."
+        question: "Comment se passe le paiement des prestations?",
+        answer: "Le paiement ne se fait uniquement lorsque que vous sélectionné le professionnel qui vous convient le mieux. Cependant, le professionnel n'est payé qu'une fois la prestation effectuée."
     },
     {
-        question: "Quels services propose Dixino ?",
-        answer: "Réponse à la question sur les services proposés par Dixino."
+        question: "Quels services propose Dixino?",
+        answer: "Nous proposons des services très variés. Cela va du nettoyage à la plomberie en passant par la coiffure. Nous vous invitons à consoulter la liste de nous services. Vous y trouverez sûrement votre bonheur."
     },
 ] as const;
 
@@ -55,7 +55,7 @@ export const categories = [
     {
         label: "Repassage",
         icon: TbIroning2,
-        description: "Gardez vos vêtement propres et repassés",
+        description: "Gardez vos vêtements propres et repassés",
         color: "#BEADFA"
     },
     {

@@ -151,7 +151,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
                 <Link href={"/"} className="text-black hover:text-primary">
                     Devenir partenaire
                 </Link>
-                <Link href={"/"} className="text-black hover:text-primary">
+                <Link href={routes.contact} className="text-black hover:text-primary">
                     Contact
                 </Link>
                 </>

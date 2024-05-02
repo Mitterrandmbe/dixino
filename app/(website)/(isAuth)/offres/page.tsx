@@ -31,7 +31,7 @@ export default async function ServicesPage() {
         )
     }
 
-    // const firstListing = listings[0];
+    const filtredListings = listings.filter((listing) => listing.serviceDate >= new Date());
     
     
     
@@ -51,15 +51,9 @@ export default async function ServicesPage() {
                 pt-12
             "
         >
-                {listings.map((listing: any) => {
+                {filtredListings.map((listing: any) => {
                     return (
-                            // <Listings 
-                            //     currentUser={currentUser}
-                            //     key={listing.id}
-                            //     listing={listing}
-                                
-                                
-                            // />
+                            
 
                             <ListingCard 
                                 key={listing.id}

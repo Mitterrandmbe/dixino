@@ -7,7 +7,7 @@ export async function getAllListings() {
         const listings = await prisma.listing.findMany({
             orderBy: {
                 serviceDate: "asc"
-            }
+            },
         });
 
         return listings;
