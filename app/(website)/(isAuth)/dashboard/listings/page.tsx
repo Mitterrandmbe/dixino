@@ -44,7 +44,7 @@ export default async function ListingsPage() {
         )
     }
 
-    // const firstListing = listings[0];
+    const filteredListings = listings.filter((listing) => listing.serviceDate >= new Date());
     
     
     
@@ -64,7 +64,7 @@ export default async function ListingsPage() {
                 pt-12
             "
         >
-                {listings.map((listing: any) => {
+                {filteredListings.map((listing: any) => {
                     return (
                             // <Listings 
                             //     currentUser={currentUser}

@@ -75,18 +75,20 @@ const Footer = () => {
         >
             <h3 className='text-md font-semibold pb-4'>Suivez-nous</h3>
             <div className='flex flex-row gap-2'>
-                <div className='bg-primary p-2 rounded-md text-white cursor-pointer hover:bg-primaryDark transition'>
+                {/* <div className='bg-primary p-2 rounded-md text-white cursor-pointer hover:bg-primaryDark transition'>
                 <AiOutlineInstagram size={20}/>
                 </div>
                 <div className='bg-primary p-2 rounded-md text-white cursor-pointer hover:bg-primaryDark transition'>
                 <SlSocialLinkedin size={20}/>
-                </div>
+                </div> */}
                 <div className='bg-primary p-2 rounded-md text-white cursor-pointer hover:bg-primaryDark transition'>
-                <AiFillFacebook size={20}/>
+                    <Link href={"https://www.facebook.com/people/Dixino/100072102700426/"} target='_blank' rel='noopener noreferrer'>
+                        <AiFillFacebook size={20}/>
+                    </Link>
                 </div>
-                <div className='bg-primary p-2 rounded-md text-white cursor-pointer hover:bg-primaryDark transition'>
+                {/* <div className='bg-primary p-2 rounded-md text-white cursor-pointer hover:bg-primaryDark transition'>
                 <FaBloggerB size={20}/>
-                </div>
+                </div> */}
             </div>
             
         </div>

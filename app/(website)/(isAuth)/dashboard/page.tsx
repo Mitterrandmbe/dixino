@@ -59,7 +59,7 @@ export default async function DashboardPage({ searchParams }: DashboardProps) {
     const reservations = await getReservations({ userId: currentUser.id });
 
     const allListings = await getAllListings();
-    
+    const filteredListings = listings.filter((listing) => listing.serviceDate >= new Date());
     
     
     return (
@@ -77,7 +77,7 @@ export default async function DashboardPage({ searchParams }: DashboardProps) {
                     reservations={reservations}
                     employers={employers}
                     applicants={applicants}
-                    allListings={allListings}
+                    allListings={filteredListings}
                 />
             </div>
         </Container>
