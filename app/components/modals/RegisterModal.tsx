@@ -12,6 +12,8 @@ import {
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 
+
+
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
@@ -19,10 +21,17 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { routes } from "@/app/libs/routes";
 
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
+
+import { accountType } from "@/app/libs/data";
+
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const [isLoading, setIsloading] = useState(false);
+
+  const userType = accountType.find((type) => type.enum)
+    const [selectedAccountType, setSelectedAccountType] = useState(userType?.label || "");
 
   const onToggle = useCallback(() => {
     registerModal.onClose();
@@ -32,6 +41,8 @@ const RegisterModal = () => {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: {
       errors,
     }
@@ -43,6 +54,14 @@ const RegisterModal = () => {
       password: '',
     }
   });
+
+  const setCustomValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+};
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsloading(true);
@@ -102,6 +121,47 @@ const RegisterModal = () => {
         errors={errors}
         required
       />
+
+      {/* Type of account */}
+      <div className="flex flex-col gap-2">
+                        <div className="text-sm text-neutral-500">Profil du compte</div>
+                        <Select
+                            value={selectedAccountType}
+                            onValueChange={(value) => {
+                                setSelectedAccountType(value);
+                                const selectedType = accountType.find(type => type.label === value);
+
+                                if (selectedType) {
+                                    setCustomValue("type", selectedType.enum)
+                                }
+                            }}
+                        >
+                            <SelectTrigger className="w-full bg-white py-8 border-2 border-neutral-300">
+                                <SelectValue 
+                                    placeholder={userType 
+                                        ? userType.label
+                                        : "Sectionner profile du compte"
+                                    } 
+                                />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                                <SelectGroup>
+                                    <SelectLabel>Profil du compte</SelectLabel>
+                                    {accountType.map((type) => (
+                                        <SelectItem 
+                                            key={type.label} 
+                                            value={type.label}
+                                            className="cursor-pointer hover:bg-neutral-100 text-md"
+                                            
+                                        >
+                                            {type.label}
+                                        </SelectItem>
+                                    ))}
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+
+                    </div>
 
 <p>En vous inscrivant, vous acceptez nos <Link href={routes.terms} className='linksStandard'>
           termes et conditions

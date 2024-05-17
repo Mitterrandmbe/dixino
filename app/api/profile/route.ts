@@ -24,6 +24,7 @@ export async function POST(
         street,
         zipCode,
         idCard,
+        type
 
     } = body;
 
@@ -41,7 +42,8 @@ export async function POST(
                 addressNumber: addressNumber,
                 street: street,
                 zipCode: zipCode,
-                idCard: idCard
+                idCard: idCard,
+                type: type
 
             }
         });

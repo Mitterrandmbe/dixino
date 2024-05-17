@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 
 import { EmailTemplate } from '@/app/components/emails/EmailTemplate';
 import { Resend } from 'resend';
+import { teamEmail } from "@/app/libs/teamContact";
 
 export async function POST(
     request: Request
@@ -13,7 +14,8 @@ export async function POST(
         email,
         firstName,
         lastName,
-        password
+        password,
+        type
     } = body;
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -23,7 +25,8 @@ export async function POST(
             email,
             firstName,
             lastName,
-            hashedPassword
+            hashedPassword,
+            type
         }
     });
 
@@ -32,8 +35,16 @@ export async function POST(
     const data = await resend.emails.send({
         from: "noreply@dixino.be",
         to: email,
-        subject: "Hello World",
+        subject: "Bienvenue sur Dixino",
         html: "<p>Bienvenue sur Dixino</p>"
+    });
+
+    // Send Email to Dixino Team
+    await resend.emails.send({
+        from: "noreply@dixino.be",
+        to: teamEmail.generalEmail,
+        subject: "Nouvelle inscription",
+        html: "<p>Une nouvelle inscription sur Dixino</p>"
     });
 
     return NextResponse.json(user);

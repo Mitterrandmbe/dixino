@@ -16,16 +16,25 @@ import Button from "../Button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
+
 import { AiFillFacebook, AiFillGoogleSquare, AiFillLinkedin } from 'react-icons/ai';
+import { accountType } from "@/app/libs/data";
+
 
 const Register = () => {
     const registerModal = useRegisterModal();
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
+    const userType = accountType.find((type) => type.enum)
+    const [selectedAccountType, setSelectedAccountType] = useState(userType?.label || "");
+
     const {
         register,
         handleSubmit,
+        setValue,
+        watch,
         formState: {
             errors,
         },
@@ -34,9 +43,18 @@ const Register = () => {
             firstName: '',
             lastName: '',
             email: '',
-            password: ''
+            password: '',
+            type: ""
         }
     });
+
+    const setCustomValue = (id: string, value: any) => {
+      setValue(id, value, {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: true,
+      });
+  };
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
@@ -102,6 +120,47 @@ const Register = () => {
                   errors={errors}
                   required
                 />
+
+                {/* Type of account */}
+                <div className="flex flex-col gap-2">
+                        <div className="text-sm text-neutral-500">Profil du compte</div>
+                        <Select
+                            value={selectedAccountType}
+                            onValueChange={(value) => {
+                                setSelectedAccountType(value);
+                                const selectedType = accountType.find(type => type.label === value);
+
+                                if (selectedType) {
+                                    setCustomValue("type", selectedType.enum)
+                                }
+                            }}
+                        >
+                            <SelectTrigger className="w-full bg-white py-8 border-2 border-neutral-300">
+                                <SelectValue 
+                                    placeholder={userType 
+                                        ? userType.label
+                                        : "Sectionner profile du compte"
+                                    } 
+                                />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                                <SelectGroup>
+                                    <SelectLabel>Profil du compte</SelectLabel>
+                                    {accountType.map((type) => (
+                                        <SelectItem 
+                                            key={type.label} 
+                                            value={type.label}
+                                            className="cursor-pointer hover:bg-neutral-100 text-md"
+                                            
+                                        >
+                                            {type.label}
+                                        </SelectItem>
+                                    ))}
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+
+                    </div>
 
                 <p>En vous inscrivant, vous acceptez nos <Link href={"/"} className='linksStandard'>
                     termes et conditions

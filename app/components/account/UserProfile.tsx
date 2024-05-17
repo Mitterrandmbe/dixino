@@ -1,7 +1,9 @@
 'use client';
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SafeService, SafeUser } from "@/app/types";
+
+import { accountType } from "@/app/libs/data";
 
 import { LuUserCircle } from "react-icons/lu";
 import { RiLockFill } from "react-icons/ri";
@@ -33,6 +35,7 @@ import ServicesClient from "./ServicesClient";
 import useServiceModal from "@/app/hooks/useServiceModal";
 import useCountries from "@/app/hooks/useCountries";
 import Image from "next/image";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
 
 interface UserProfileProps {
     currentUser: SafeUser | null;
@@ -48,7 +51,13 @@ const UserProfile: React.FC<UserProfileProps> = ({
 
     const [selected, setSelected] = useState("Profil");
 
+    
     const serviceModal = useServiceModal();
+    
+    const userType = accountType.find((type) => type.enum === currentUser?.type) 
+    const [selectedAccountType, setSelectedAccountType] = useState(userType?.label || "");
+
+    
 
     const onCreateService = useCallback(() => {
         serviceModal.onOpen();
@@ -83,6 +92,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
             street: currentUser?.street,
             zipCode: currentUser?.zipCode,
             idCard: currentUser?.idCard,
+            type: currentUser?.type
 
         }
     });
@@ -90,6 +100,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
     const image = watch('image');
     const countryValue = watch('countryValue');
     const idCard = watch('idCard');
+    const curentUserType = watch("type")
 
     const idCardEmpty = !currentUser?.id
 
@@ -118,6 +129,11 @@ const UserProfile: React.FC<UserProfileProps> = ({
         })
     };
 
+    useEffect(() => {
+        if (userType) {
+            setCustomValue("type", userType.enum)
+        }
+    }, [userType])
 
   
     return (
@@ -209,6 +225,47 @@ const UserProfile: React.FC<UserProfileProps> = ({
                             </div>
                             <RiLockFill size={24} className="text-neutral-500" />
                         </div>
+                    </div>
+
+                    {/* Type of account */}
+                    <div className="flex flex-col gap-2">
+                        <div className="text-sm text-neutral-500">Profil du compte</div>
+                        <Select
+                            value={selectedAccountType}
+                            onValueChange={(value) => {
+                                setSelectedAccountType(value);
+                                const selectedType = accountType.find(type => type.label === value);
+
+                                if (selectedType) {
+                                    setCustomValue("type", selectedType.enum)
+                                }
+                            }}
+                        >
+                            <SelectTrigger className="w-full bg-white py-8 rounded-none">
+                                <SelectValue 
+                                    placeholder={userType 
+                                        ? userType.label
+                                        : "Sectionner profile du compte"
+                                    } 
+                                />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                                <SelectGroup>
+                                    <SelectLabel>Profil du compte</SelectLabel>
+                                    {accountType.map((type) => (
+                                        <SelectItem 
+                                            key={type.label} 
+                                            value={type.label}
+                                            className="cursor-pointer hover:bg-neutral-100 text-md"
+                                            
+                                        >
+                                            {type.label}
+                                        </SelectItem>
+                                    ))}
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+
                     </div>
 
                     <MultilineInput 

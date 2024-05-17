@@ -13,6 +13,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { accountType } from "../libs/data";
 
 interface ProfileClientProps {
   user: SafeUser;
@@ -25,6 +26,8 @@ export const ProfileClient: React.FC<ProfileClientProps> = ({ user, key, onClick
     const [showInfo, setShowInfo] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+
+    const userType = accountType.find((type) => type.enum === user.type)
 
     const {getByValue} = useCountries();
     const countryName = getByValue(user?.countryValue || "")
@@ -94,6 +97,7 @@ export const ProfileClient: React.FC<ProfileClientProps> = ({ user, key, onClick
             {user.firstName} {user.lastName}
             </div>
             <div className="text-sm text-neutral-600">{user.email}</div>
+            <div className="text-sm">{userType?.label}</div>
             
         </div>
         <div

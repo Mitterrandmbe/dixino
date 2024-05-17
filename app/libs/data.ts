@@ -225,3 +225,19 @@ export const accountTabs = [
         label: "Identité"
     }
 ] as const
+
+
+export const accountType = [
+    {
+        label: "Professionnel",
+        enum: "PRO",
+    },
+    {
+        label: "Etudiant",
+        enum: "STUDENT",
+    },
+    {
+        label: "Autre",
+        enum: "OTHER"
+    }
+] as const
